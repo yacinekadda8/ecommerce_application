@@ -1,0 +1,105 @@
+import 'package:ecommerce_application/controller/homepage_controller.dart';
+import 'package:ecommerce_application/core/class/handlingdataview.dart';
+import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/view/widget/home/customappbar.dart';
+import 'package:ecommerce_application/view/widget/home/customcardhome.dart';
+import 'package:ecommerce_application/view/widget/home/customtitlehome.dart';
+import 'package:ecommerce_application/view/widget/home/listcategorieshome.dart';
+import 'package:ecommerce_application/view/widget/home/listitemshome.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Get.put(HomepageControllerImp());
+
+    return  GetBuilder<HomepageControllerImp>(
+            builder: (controller) => HandlingDataView(
+                statusRequest: controller.statusRequest,
+                widget: Container(
+                    color: AppColor.backgroundcolor,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: ListView(
+                        children: [
+                          CustomAppBar(
+                            hintText: "search",
+                            icon: Icons.notifications_outlined,
+                            onPressedIcon: () {},
+                            onPressedSearch: () {},
+                          ),
+                          const CustomCardHome(
+                            title: "A summer surprise",
+                            subtitle: "Cashback 20%",
+                          ),
+                          const CustomTitleHome(
+                              title: "Explore the categoreis"),
+                          const ListCategoriesHome(),
+                          const CustomTitleHome(title: "Daily Deals"),
+                          const ListItemsHome(),
+                          const CustomTitleHome(title: "Popular products"),
+                          const ListItemsHome(),
+
+                          /*
+                          SizedBox(
+                            height: 500,
+                            child: GridView.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                ),
+                                itemCount: 10,
+                                scrollDirection: Axis.vertical,
+                                itemBuilder: (context, index) {
+                                  return Stack(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: AppColor.primaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(18),
+                                        ),
+                                        height: 240,
+                                        width: 200,
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.only(top: 10),
+                                        height: 140,
+                                        width: 200,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(18),
+                                        ),
+                                        child: Image.asset(
+                                          "assets/images/products/p1.jpg",
+                                          fit: BoxFit.fitHeight,
+                                        ),
+                                      ),
+                                      const Positioned(
+                                          top: 140,
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 20),
+                                            child: Text(
+                                              "MOTHERBOARD",
+                                              style: TextStyle(
+                                                  color: AppColor.white,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ))
+                                    ],
+                                  );
+                                }),
+                          ),
+                          */
+                        ],
+                      ),
+                    ))));
+  }
+}
