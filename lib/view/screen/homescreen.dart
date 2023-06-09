@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width / 5,
-                  color: Colors.amber[700],
+                  color: Colors.amber[700],  
                   child: MaterialButton(
                     onPressed: () {},
                     child: Column(
