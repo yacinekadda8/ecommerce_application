@@ -7,13 +7,13 @@ Future<bool> alertExitApp() {
   Get.defaultDialog(
       title: "تنبيه",
       titleStyle: const TextStyle(
-          color: AppColor.primaryColor, fontWeight: FontWeight.bold),
+          color: AppColor.primaryblueColor, fontWeight: FontWeight.bold),
       middleText: "هل تريد الخروج من التطبيق",
       actions: [
         ElevatedButton(
             style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(AppColor.primaryColor)),
+                    MaterialStateProperty.all(AppColor.primaryblueColor)),
             onPressed: () {
               exit(0);
             },
@@ -21,7 +21,7 @@ Future<bool> alertExitApp() {
         ElevatedButton(
             style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(AppColor.primaryColor)),
+                    MaterialStateProperty.all(AppColor.primaryblueColor)),
             onPressed: () {
               Get.back();
             },

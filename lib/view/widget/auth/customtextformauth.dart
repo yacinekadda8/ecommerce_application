@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormAuth extends StatelessWidget {
@@ -34,8 +35,20 @@ class CustomTextFormAuth extends StatelessWidget {
         controller: mycontroller,
         obscureText: obscureText == null || obscureText == false ? false : true,
         decoration: InputDecoration(
+            /*
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColor.primaryblueColor),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColor.primaryblueColor),
+            ), */
+            focusedBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                borderSide: BorderSide(
+                  color: AppColor.primaryblueColor,
+                )),
             hintText: hinttext,
-            hintStyle: const TextStyle(fontSize: 14),
+            hintStyle: const TextStyle(fontSize: 14, color: AppColor.white),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
@@ -44,7 +57,7 @@ class CustomTextFormAuth extends StatelessWidget {
                 child: Text(labeltext)),
             suffixIcon: InkWell(
               onTap: onTapIcon,
-              child: Icon(iconData),
+              child: Icon(iconData, color: AppColor.white),
             ),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(30))),

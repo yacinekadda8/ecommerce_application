@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/core/class/statusrequest.dart';
+import 'package:ecommerce_application/core/constant/routes.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/home_data.dart';
@@ -7,9 +8,10 @@ import 'package:get/get.dart';
 abstract class HomepageController extends GetxController {
   initialdata();
   getData();
+  goToItems(List catrgories, int selectedCat);
 }
 
-class HomepageControllerImp extends HomepageController {
+class HomeControllerImp extends HomepageController {
   MyServices myServices = Get.find();
   String? username;
   String? id;
@@ -49,5 +51,13 @@ class HomepageControllerImp extends HomepageController {
       }
     }
     update();
+  }
+
+  @override
+  goToItems(List catrgories,int selectedCat) {
+    Get.toNamed(AppRoute.items,arguments: {
+      "categories" : categories,
+      "selectedcat": selectedCat,
+    });
   }
 }

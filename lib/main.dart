@@ -3,7 +3,7 @@ import 'package:ecommerce_application/core/localization/translation.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/routes.dart';
 
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'core/localization/changelocal.dart';
@@ -11,7 +11,7 @@ import 'core/localization/changelocal.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialServices();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flutter Ecommerce',
       locale: controller.language,
       theme: controller.appTheme,
       initialBinding: InitialBindings(),

@@ -19,15 +19,16 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(LoginControllerImp());
     return Scaffold(
+      backgroundColor: AppColor.backgroundcolor,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColor.backgroundcolor,
+        backgroundColor: AppColor.primaryblueColor,
         elevation: 0.0,
         title: Text('Sign In',
             style: Theme.of(context)
                 .textTheme
                 .displayLarge!
-                .copyWith(color: AppColor.grey)),
+                .copyWith(color: AppColor.backgroundcolor)),
       ),
       body: WillPopScope(
           onWillPop: alertExitApp,

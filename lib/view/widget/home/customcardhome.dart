@@ -5,7 +5,8 @@ class CustomCardHome extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const CustomCardHome({super.key, required this.title, required this.subtitle});
+  const CustomCardHome(
+      {super.key, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class CustomCardHome extends StatelessWidget {
           alignment: Alignment.center,
           height: 150,
           decoration: BoxDecoration(
-              color: AppColor.primaryColor,
+              color: AppColor.primaryblueColor,
               borderRadius: BorderRadius.circular(20)),
-          child:  ListTile(
+          child: ListTile(
             title: Text(title,
                 style: const TextStyle(
                   color: Colors.white,
@@ -33,13 +34,13 @@ class CustomCardHome extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: -20,
+          top: -18,
           right: -20,
           child: Container(
-            height: 160,
-            width: 160,
+            height: 140,
+            width: 140,
             decoration: BoxDecoration(
-              color: AppColor.secoundColor,
+              color: AppColor.silverGreen,
               borderRadius: BorderRadius.circular(160),
             ),
           ),

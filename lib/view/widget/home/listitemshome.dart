@@ -5,7 +5,7 @@ import 'package:ecommerce_application/linkapi.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class ListItemsHome extends GetView<HomepageControllerImp> {
+class ListItemsHome extends GetView<HomeControllerImp> {
   const ListItemsHome({super.key});
 
   @override

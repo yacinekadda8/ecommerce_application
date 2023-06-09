@@ -1,49 +1,49 @@
 import 'package:ecommerce_application/controller/homepage_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
-import 'package:ecommerce_application/view/widget/home/customappbar.dart';
+import 'package:ecommerce_application/view/widget/customappbar.dart';
 import 'package:ecommerce_application/view/widget/home/customcardhome.dart';
 import 'package:ecommerce_application/view/widget/home/customtitlehome.dart';
-import 'package:ecommerce_application/view/widget/home/listcategorieshome.dart';
-import 'package:ecommerce_application/view/widget/home/listitemshome.dart';
+import 'package:ecommerce_application/view/widget/home/list_categories_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../widget/home/listitemshome.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomepageControllerImp());
+    Get.put(HomeControllerImp());
 
-    return  GetBuilder<HomepageControllerImp>(
-            builder: (controller) => HandlingDataView(
-                statusRequest: controller.statusRequest,
-                widget: Container(
-                    color: AppColor.backgroundcolor,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: ListView(
-                        children: [
-                          CustomAppBar(
-                            hintText: "search",
-                            icon: Icons.notifications_outlined,
-                            onPressedIcon: () {},
-                            onPressedSearch: () {},
-                          ),
-                          const CustomCardHome(
-                            title: "A summer surprise",
-                            subtitle: "Cashback 20%",
-                          ),
-                          const CustomTitleHome(
-                              title: "Explore the categoreis"),
-                          const ListCategoriesHome(),
-                          const CustomTitleHome(title: "Daily Deals"),
-                          const ListItemsHome(),
-                          const CustomTitleHome(title: "Popular products"),
-                          const ListItemsHome(),
+    return GetBuilder<HomeControllerImp>(
+        builder: (controller) => HandlingDataView(
+            statusRequest: controller.statusRequest,
+            widget: Container(
+                color: AppColor.backgroundcolor,
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: ListView(
+                    children: [
+                      CustomAppBar(
+                        hintText: "search",
+                        icon: Icons.notifications_outlined,
+                        onPressedIcon: () {},
+                        onPressedSearch: () {},
+                      ),
+                      const CustomCardHome(
+                        title: "A summer surprise",
+                        subtitle: "Cashback 20%",
+                      ),
+                      const CustomTitleHome(title: "Explore the categoreis"),
+                      const ListCategoriesHome(),
+                      const CustomTitleHome(title: "Daily Deals"),
+                      const ListItemsHome(),
+                      const CustomTitleHome(title: "Popular products"),
+                      const ListItemsHome(),
 
-                          /*
+                      /*
                           SizedBox(
                             height: 500,
                             child: GridView.builder(
@@ -98,8 +98,8 @@ class HomePage extends StatelessWidget {
                                 }),
                           ),
                           */
-                        ],
-                      ),
-                    ))));
+                    ],
+                  ),
+                ))));
   }
 }

@@ -18,15 +18,15 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(SignUpControllerImp());
     return Scaffold(
+      backgroundColor: AppColor.backgroundcolor,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColor.backgroundcolor,
         elevation: 0.0,
         title: Text('17'.tr,
             style: Theme.of(context)
                 .textTheme
                 .displayLarge!
-                .copyWith(color: AppColor.grey)),
+                .copyWith(color: AppColor.backgroundcolor)),
       ),
       body: WillPopScope(
           onWillPop: alertExitApp,

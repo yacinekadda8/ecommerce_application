@@ -4,7 +4,7 @@ import 'package:ecommerce_application/data/model/categoriesmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ListCategoriesHome extends GetView<HomepageControllerImp> {
+class ListCategoriesHome extends GetView<HomeControllerImp> {
   const ListCategoriesHome({super.key});
 
   @override
@@ -18,6 +18,7 @@ class ListCategoriesHome extends GetView<HomepageControllerImp> {
         itemCount: controller.categories.length,
         itemBuilder: (BuildContext context, int index) {
           return Categories(
+              i : index,
               categoriesModel:
                   CategoriesModel.fromJson(controller.categories[index]));
         },
@@ -26,33 +27,34 @@ class ListCategoriesHome extends GetView<HomepageControllerImp> {
   }
 }
 
-class Categories extends StatelessWidget {
+class Categories extends GetView<HomeControllerImp> {
   final CategoriesModel categoriesModel;
-  const Categories({super.key, required this.categoriesModel});
+  final int? i;
+  const Categories({Key? key, required this.i, required this.categoriesModel}): super(key:key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(
-          color: AppColor.primaryColor,
-          borderRadius: BorderRadius.circular(18),
-          /*border: Border.all(
-            color: AppColor.primaryColor, // Specify the border color here
-            width: 6.0, // Specify the border width here
-          ),*/
-        ),
-        //color: Colors.red,
-        child: /* SvgPicture.network("${AppLink.imageCategories}/${controller.categories[index]['categories_image']}")*/
-            Container(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Text(
-            "${categoriesModel.categoriesName}",
-            style: const TextStyle(
-              fontSize: 30,
-              color: AppColor.white,
-              fontWeight: FontWeight.bold,
-            ),
+    return InkWell(
+      onTap: () {
+        controller.goToItems(controller.categories, i!);
+      },
+      child: Container(
+          decoration: BoxDecoration(
+            color: AppColor.primaryblueColor,
+            borderRadius: BorderRadius.circular(18),
           ),
-        ));
+          child: /* SvgPicture.network("${AppLink.imageCategories}/${controller.categories[index]['categories_image']}")*/
+              Container(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Text(
+              "${categoriesModel.categoriesName}",
+              style: const TextStyle(
+                fontSize: 30,
+                color: AppColor.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )),
+    );
   }
 }

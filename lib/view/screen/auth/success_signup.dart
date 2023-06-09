@@ -29,7 +29,7 @@ class SuccessSignUp extends StatelessWidget {
               child: Icon(
             Icons.check_circle_outline,
             size: 200,
-            color: AppColor.primaryColor,
+            color: AppColor.primaryblueColor,
           )),
           Text("37".tr,
               style: Theme.of(context)

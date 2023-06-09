@@ -5,7 +5,7 @@ import 'package:ecommerce_application/core/constant/routes.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/auth/login.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -70,10 +70,10 @@ class LoginControllerImp extends LoginController {
 
   @override
   void onInit() {
-    FirebaseMessaging.instance.getToken().then((value) {
+    /* FirebaseMessaging.instance.getToken().then((value) {
       String? token = value;
       print("token: $token");
-    });
+    }); */
 
     email = TextEditingController();
     password = TextEditingController();
