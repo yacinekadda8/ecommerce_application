@@ -11,7 +11,7 @@ class ListCategoriesItems extends GetView<ItemsControllerImp> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 60,
       child: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(width: 10),
         itemCount: controller.categories.length,
@@ -39,7 +39,7 @@ class Categories extends GetView<ItemsControllerImp> {
     return InkWell(
       onTap: () {
         // controller.goToItems(controller.categories, i!);
-        controller.changeCat(i!);
+        controller.changeCat(i!,categoriesModel.categoriesId!.toString());
       },
       child: Column(
         children: [

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/controller/homepage_controller.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/data/model/itemsmodel.dart';
@@ -13,20 +14,21 @@ class ListItemsHome extends GetView<HomeControllerImp> {
     return SizedBox(
       //color: AppColor.primaryColor,
       height: 240,
+
       child: ListView.builder(
           itemCount: controller.items.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Items(
                 ontap: () {},
-                itemsModel: ItemModel.fromJson(controller.items[index]));
+                itemsModel: ItemsModel.fromJson(controller.items[index]));
           }),
     );
   }
 }
 
 class Items extends StatelessWidget {
-  final ItemModel itemsModel;
+  final ItemsModel itemsModel;
   final void Function() ontap;
   const Items({super.key, required this.itemsModel, required this.ontap});
 
@@ -35,34 +37,43 @@ class Items extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: Container(
+        width: 180,
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               padding: const EdgeInsets.all(4),
-              child: Image.network(
-                "${AppLink.imageItems}/${itemsModel.itemsImage}",
+              child: CachedNetworkImage(
+                imageUrl: "${AppLink.imageItems}/${itemsModel.itemsImage}",
                 height: 100,
                 width: 140,
                 fit: BoxFit.fitHeight,
               ),
             ),
-            Flexible(
-              child: Text(
-                "${itemsModel.itemsName}",
-                style: const TextStyle(
-                    color: AppColor.black,
-                    // fontWeight: FontWeight.bold,
-                    fontSize: 18),
+            SizedBox(
+              width: 160,
+              child: Center(
+                child: Text(
+                  "${itemsModel.itemsName}",
+                  style: const TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      color: AppColor.black,
+                      fontFamily: "serif",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
               ),
             ),
             Text(
               "${itemsModel.itemsPrice} DZD",
               style: const TextStyle(
+                  fontFamily: "sans",
                   color: AppColor.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
@@ -71,7 +82,8 @@ class Items extends StatelessWidget {
               "${itemsModel.itemsDiscount} %OFF",
               style: const TextStyle(
                   color: AppColor.black,
-                  // fontWeight: FontWeight.bold,
+                  fontFamily: "serif",
+                  fontWeight: FontWeight.bold,
                   fontSize: 16),
             ),
           ],
