@@ -16,7 +16,10 @@ import 'package:get/get.dart';
 
 List<GetPage<dynamic>>? routes = [
   GetPage(
-      name: "/", page: () => const Language(), middlewares: [MyMiddleWare()]),
+    name: "/",
+    page: () => const Language(),
+    // middlewares: [MyMiddleWare()],
+  ),
   // GetPage(name: "/", page: () => TestView()),
 //  Auth
   GetPage(name: AppRoute.login, page: () => const Login()),
@@ -33,5 +36,5 @@ List<GetPage<dynamic>>? routes = [
       name: AppRoute.verfiyCodeSignUp, page: () => const VerfiyCodeSignUp()),
   //
   GetPage(name: AppRoute.homepage, page: () => const HomeScreen()),
-  GetPage(name: AppRoute.items, page: () => const Items()), 
+  GetPage(name: AppRoute.items, page: () => const Items()),
 ];

@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/controller/homepage_controller.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/core/functions/translate_database.dart';
 import 'package:ecommerce_application/data/model/categoriesmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class ListCategoriesHome extends GetView<HomeControllerImp> {
         itemCount: controller.categories.length,
         itemBuilder: (BuildContext context, int index) {
           return Categories(
-              i : index,
+              i: index,
               categoriesModel:
                   CategoriesModel.fromJson(controller.categories[index]));
         },
@@ -30,31 +31,34 @@ class ListCategoriesHome extends GetView<HomeControllerImp> {
 class Categories extends GetView<HomeControllerImp> {
   final CategoriesModel categoriesModel;
   final int? i;
-  const Categories({Key? key, required this.i, required this.categoriesModel}): super(key:key);
+  const Categories({Key? key, required this.i, required this.categoriesModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.goToItems(controller.categories, i!,categoriesModel.categoriesId.toString());
+        controller.goToItems(
+            controller.categories, i!, categoriesModel.categoriesId.toString());
       },
       child: Container(
-          decoration: BoxDecoration(
-            color: AppColor.primaryblueColor,
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: /* SvgPicture.network("${AppLink.imageCategories}/${controller.categories[index]['categories_image']}")*/
-              Container(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Text(
-              "${categoriesModel.categoriesName}",
-              style: const TextStyle(
-                fontSize: 30,
-                color: AppColor.white,
-                fontWeight: FontWeight.bold,
-              ),
+        decoration: BoxDecoration(
+          color: AppColor.primaryblueColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        height: 40,
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Center(
+          child: Text(
+            "${translateDatabase(categoriesModel.categoriesNameAr, categoriesModel.categoriesName)}",
+            style: const TextStyle(
+              fontSize: 30,
+              color: AppColor.white,
+              fontWeight: FontWeight.bold,
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

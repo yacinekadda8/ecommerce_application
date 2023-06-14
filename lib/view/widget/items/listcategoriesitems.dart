@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/functions/translate_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,7 +40,7 @@ class Categories extends GetView<ItemsControllerImp> {
     return InkWell(
       onTap: () {
         // controller.goToItems(controller.categories, i!);
-        controller.changeCat(i!,categoriesModel.categoriesId!.toString());
+        controller.changeCat(i!, categoriesModel.categoriesId!.toString());
       },
       child: Column(
         children: [
@@ -55,7 +56,7 @@ class Categories extends GetView<ItemsControllerImp> {
                                     color: AppColor.primaryblueColor)))
                         : null,
                     child: Text(
-                      "${categoriesModel.categoriesName}",
+                      "${translateDatabase(categoriesModel.categoriesNameAr, categoriesModel.categoriesName)}",
                       style: const TextStyle(
                         fontSize: 22,
                         color: AppColor.silverGreen,

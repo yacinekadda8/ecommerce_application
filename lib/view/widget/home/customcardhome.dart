@@ -1,6 +1,8 @@
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/functions/right_and_left.dart';
+
 class CustomCardHome extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -33,6 +35,19 @@ class CustomCardHome extends StatelessWidget {
                 )),
           ),
         ),
+        rightAndLeft(
+        Positioned(
+          top: -18,
+          left: -20,
+          child: Container(
+            height: 140,
+            width: 140,
+            decoration: BoxDecoration(
+              color: AppColor.silverGreen,
+              borderRadius: BorderRadius.circular(160),
+            ),
+          ),
+        ),
         Positioned(
           top: -18,
           right: -20,
@@ -45,6 +60,9 @@ class CustomCardHome extends StatelessWidget {
             ),
           ),
         )
+        )
+
+
       ]),
     );
   }
