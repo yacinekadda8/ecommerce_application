@@ -22,9 +22,10 @@ class CustomAppBar extends StatelessWidget {
           children: [
             Expanded(
                 child: TextFormField(
-                  
+              style: const TextStyle(
+                color: AppColor.white,
+              ),
               decoration: InputDecoration(
-                
                 hintText: hintText,
                 hintStyle: const TextStyle(fontSize: 20, color: AppColor.white),
                 floatingLabelBehavior: FloatingLabelBehavior.always,

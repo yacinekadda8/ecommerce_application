@@ -42,7 +42,7 @@ class Categories extends GetView<ItemsControllerImp> {
         // controller.goToItems(controller.categories, i!);
         controller.changeCat(i!, categoriesModel.categoriesId!.toString());
       },
-      child: Column(
+      child: Column( 
         children: [
           GetBuilder<ItemsControllerImp>(
               builder: (controller) => Container(

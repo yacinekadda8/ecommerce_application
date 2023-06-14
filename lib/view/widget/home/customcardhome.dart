@@ -12,58 +12,53 @@ class CustomCardHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Stack(children: [
-        Container(
-          alignment: Alignment.center,
-          height: 150,
-          decoration: BoxDecoration(
-              color: AppColor.primaryblueColor,
-              borderRadius: BorderRadius.circular(20)),
-          child: ListTile(
-            title: Text(title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                )),
-            subtitle: Text(subtitle,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                )),
-          ),
+    return Stack(children: [
+      Container(
+        alignment: Alignment.center,
+        height: 150,
+        decoration: BoxDecoration(
+            color: AppColor.primaryblueColor,
+            borderRadius: BorderRadius.circular(10)),
+        child: ListTile(
+          title: Text(title,
+              style: const TextStyle(
+                color: AppColor.backgroundcolor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              )),
+          subtitle: Text(subtitle,
+              style: const TextStyle(
+                color: AppColor.white,
+                fontSize: 36,
+                fontWeight: FontWeight.normal,
+              )),
         ),
-        rightAndLeft(
-        Positioned(
-          top: -18,
-          left: -20,
-          child: Container(
-            height: 140,
-            width: 140,
-            decoration: BoxDecoration(
-              color: AppColor.silverGreen,
-              borderRadius: BorderRadius.circular(160),
+      ),
+      rightAndLeft(
+          Positioned(
+            top: -24,
+            left: -28,
+            child: Container(
+              height: 140,
+              width: 140,
+              decoration: BoxDecoration(
+                color: AppColor.silverGreen,
+                borderRadius: BorderRadius.circular(160),
+              ),
             ),
           ),
-        ),
-        Positioned(
-          top: -18,
-          right: -20,
-          child: Container(
-            height: 140,
-            width: 140,
-            decoration: BoxDecoration(
-              color: AppColor.silverGreen,
-              borderRadius: BorderRadius.circular(160),
+          Positioned(
+            top: -24,
+            right: -28,
+            child: Container(
+              height: 140,
+              width: 140,
+              decoration: BoxDecoration(
+                color: AppColor.silverGreen,
+                borderRadius: BorderRadius.circular(160),
+              ),
             ),
-          ),
-        )
-        )
-
-
-      ]),
-    );
+          ))
+    ]);
   }
 }

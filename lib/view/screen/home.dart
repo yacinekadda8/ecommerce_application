@@ -32,15 +32,15 @@ class HomePage extends StatelessWidget {
                         onPressedIcon: () {},
                         onPressedSearch: () {},
                       ),
-                       CustomCardHome(
+                      CustomCardHome(
                         title: "42".tr,
                         subtitle: "43".tr, // cashback
                       ),
                       CustomTitleHome(title: "39".tr), // Explore the categoreis
                       const ListCategoriesHome(),
-                       CustomTitleHome(title: "40".tr),
+                      CustomTitleHome(title: "40".tr),
                       const ListItemsHome(),
-                       CustomTitleHome(title: "41".tr),
+                      CustomTitleHome(title: "41".tr),
                       const ListItemsHome(),
 
                       /*
