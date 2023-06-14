@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
 
 import '../core/class/statusrequest.dart';
@@ -8,6 +9,7 @@ abstract class ItemsController extends GetxController {
   intialData();
   changeCat(int val, String catval);
   getItems(categoryid);
+  goToItemsDetailsScreen(ItemsModel itemsModel);
 }
 
 class ItemsControllerImp extends ItemsController {
@@ -54,5 +56,12 @@ class ItemsControllerImp extends ItemsController {
       }
     }
     update();
+  }
+
+  @override
+  goToItemsDetailsScreen(itemsModel) {
+    Get.toNamed("itemdetails", arguments: {
+      "itemsmodel": itemsModel,
+    });
   }
 }

@@ -5,10 +5,13 @@ import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/home_data.dart';
 import 'package:get/get.dart';
 
+import '../data/model/itemsmodel.dart';
+
 abstract class HomepageController extends GetxController {
   initialdata();
   getData();
   goToItems(List catrgories, int selectedCat,String categoryid);
+  goToItemsDetailsScreen(ItemsModel itemsModel);
 }
 
 class HomeControllerImp extends HomepageController {
@@ -59,6 +62,12 @@ class HomeControllerImp extends HomepageController {
       "categories" : categories,
       "selectedcat": selectedCat,
       "categoryid": categoryid,
+    });
+  }
+  @override
+  goToItemsDetailsScreen(itemsModel) {
+    Get.toNamed("itemdetails", arguments: {
+      "itemsmodel": itemsModel,
     });
   }
 }

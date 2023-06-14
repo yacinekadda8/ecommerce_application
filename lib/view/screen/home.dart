@@ -39,9 +39,9 @@ class HomePage extends StatelessWidget {
                       CustomTitleHome(title: "39".tr), // Explore the categoreis
                       const ListCategoriesHome(),
                       CustomTitleHome(title: "40".tr),
-                      const ListItemsHome(),
+                       const ListItemsHome(),
                       CustomTitleHome(title: "41".tr),
-                      const ListItemsHome(),
+                       const ListItemsHome(),
 
                       /*
                           SizedBox(

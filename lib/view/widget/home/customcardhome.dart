@@ -58,7 +58,7 @@ class CustomCardHome extends StatelessWidget {
                 borderRadius: BorderRadius.circular(160),
               ),
             ),
-          ))
+          )),
     ]);
   }
 }

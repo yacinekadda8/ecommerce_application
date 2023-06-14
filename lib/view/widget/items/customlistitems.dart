@@ -1,17 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../controller/items_controller.dart';
 import '../../../core/constant/color.dart';
 import '../../../data/model/itemsmodel.dart';
 import '../../../linkapi.dart';
 
-class CustomListItems extends StatelessWidget {
+class CustomListItems extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
   const CustomListItems({super.key, required this.itemsModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        controller.goToItemsDetailsScreen(itemsModel);
+      },
       child: Card(
         elevation: 7,
         color: AppColor.itemsColor,
@@ -31,11 +36,14 @@ class CustomListItems extends StatelessWidget {
                 height: 110,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6.0),
-                  child: CachedNetworkImage(
-                    imageUrl: "${AppLink.imageItems}/${itemsModel.itemsImage}",
-                    alignment: Alignment.center,
-                    fit: BoxFit.fitHeight,
-                  ),
+                  child: Hero(
+                      tag: "${itemsModel.itemsId}",
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "${AppLink.imageItems}/${itemsModel.itemsImage}",
+                        alignment: Alignment.center,
+                        fit: BoxFit.fitHeight,
+                      )),
                 ),
               ),
               Text(
