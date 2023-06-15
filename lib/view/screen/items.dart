@@ -19,6 +19,7 @@ class Items extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.backgroundcolor,
       body: Container(
+          height: Get.height,
           padding: const EdgeInsets.all(15),
           child: ListView(children: [
             CustomAppBar(
@@ -45,7 +46,8 @@ class Items extends StatelessWidget {
                         itemCount: controller.data.length,
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) {
-                          return CustomListItems(
+                          return CustomListItem(
+                              //isFav: false,
                               itemsModel:
                                   ItemsModel.fromJson(controller.data[index]));
                         })))

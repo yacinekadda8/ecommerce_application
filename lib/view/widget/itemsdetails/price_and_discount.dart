@@ -18,7 +18,7 @@ class PriceAndDiscount extends GetView<ItemDetailsControllerImp> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text("${controller.itemsModel.itemsPrice} DZD",
+          Text("${controller.itemsModel.itemsPrice.toString()} DZD",
               style: const TextStyle(
                   //backgroundColor: AppColor.primaryblueColor,
                   fontSize: 28,

@@ -10,6 +10,13 @@ class ItemDetailsControllerImp extends ItemDetailsController {
     itemsModel = Get.arguments['itemsmodel'];
   }
 
+  List subitems = [
+    {"name": "red", "id": 1, "active": "0"},
+    {"name": "yellow", "id": 2, "active": "0"},
+    {"name": "white", "id": 3, "active": "1"},
+    {"name": "black", "id": 4, "active": "0"},
+  ];
+
   @override
   void onInit() {
     initailData();

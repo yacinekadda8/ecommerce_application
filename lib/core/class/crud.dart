@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/core/class/statusrequest.dart';

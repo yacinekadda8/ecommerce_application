@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,8 @@ abstract class ItemsController extends GetxController {
 
 class ItemsControllerImp extends ItemsController {
   ItemsData itemsData = ItemsData(Get.find());
+
+  MyServices myServices = Get.find();
   late StatusRequest statusRequest;
   List data = [];
   List categories = [];
@@ -45,7 +48,8 @@ class ItemsControllerImp extends ItemsController {
   getItems(categoryid) async {
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await itemsData.getData(categoryid);
+    var response = await itemsData.getData(
+        categoryid, myServices.sharedPreferences.getString("id")!);
     //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {

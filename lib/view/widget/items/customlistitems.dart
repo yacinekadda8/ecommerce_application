@@ -7,9 +7,10 @@ import '../../../core/constant/color.dart';
 import '../../../data/model/itemsmodel.dart';
 import '../../../linkapi.dart';
 
-class CustomListItems extends GetView<ItemsControllerImp> {
+class CustomListItem extends GetView<ItemsControllerImp> {
+  //final bool isFav;
   final ItemsModel itemsModel;
-  const CustomListItems({super.key, required this.itemsModel});
+  const CustomListItem({super.key, required this.itemsModel, });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +33,8 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                   color: AppColor.white,
                   borderRadius: BorderRadius.circular(4),
                 ),
-                width: 180,
-                height: 110,
+                width: Get.width,
+                height: Get.height / 6,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6.0),
                   child: Hero(
@@ -77,7 +78,7 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "${itemsModel.itemsPrice} DZD",
+                    "${itemsModel.itemsPrice.toString()} DZD",
                     style: const TextStyle(
                       fontFamily: "sans",
                       fontSize: 20,
@@ -91,8 +92,8 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                       color: AppColor.primaryblueColor,
                       iconSize: 34,
                       onPressed: () {},
-                      icon: const Icon(
-                        Icons.favorite_outline_rounded,
+                      icon: Icon(
+                       itemsModel.favorite == 1 ? Icons.favorite : Icons.favorite_outline_rounded,
                       ),
                     ),
                   )

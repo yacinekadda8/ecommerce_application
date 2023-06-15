@@ -13,16 +13,14 @@ class ListItemsHome extends GetView<HomeControllerImp> {
   Widget build(BuildContext context) {
     return SizedBox(
       //color: AppColor.primaryColor,
-      height: 240,
+      height: 280,
 
       child: ListView.builder(
           itemCount: controller.items.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Items(
-                ontap: () {
-
-                },
+                ontap: () {},
                 itemsModel: ItemsModel.fromJson(controller.items[index]));
           }),
     );
@@ -73,9 +71,10 @@ class Items extends StatelessWidget {
               ),
             ),
             Text(
-              "${itemsModel.itemsPrice} DZD",
+              "${itemsModel.itemsPrice.toString()} DZD",
               style: const TextStyle(
                   fontFamily: "sans",
+                  overflow: TextOverflow.ellipsis,
                   color: AppColor.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
