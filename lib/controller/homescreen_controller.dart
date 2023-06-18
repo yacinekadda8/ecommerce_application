@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/view/screen/home.dart';
+import 'package:ecommerce_application/view/screen/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,20 +27,13 @@ class HomeScreenControllerImp extends HomeScreenController {
         )
       ],
     ),
-    const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Text('Setting'),
-        )
-      ],
-    ),
+    const MySettings(),
   ];
 
   List iconBottomAppBar = [
     Icons.home_filled,
     Icons.person,
-    Icons.favorite,
+    Icons.notifications,
     Icons.settings,
   ];
   @override

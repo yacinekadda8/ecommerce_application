@@ -20,7 +20,9 @@ class ListItemsHome extends GetView<HomeControllerImp> {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Items(
-                ontap: () {},
+                ontap: () {
+                  
+                },
                 itemsModel: ItemsModel.fromJson(controller.items[index]));
           }),
     );

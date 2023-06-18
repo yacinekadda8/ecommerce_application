@@ -1,6 +1,7 @@
 class AppLink {
   static const String server = "http://192.168.1.67/ecommercecourse";
-  static const String imagestatic = "http://192.168.1.67/ecommercecourse/upload";
+  static const String imagestatic =
+      "http://192.168.1.67/ecommercecourse/upload";
 
   // ================================= images ========================== //
 
@@ -14,6 +15,7 @@ class AppLink {
   static const String signUp = "$server/auth/signup.php";
   static const String login = "$server/auth/login.php";
   static const String verifycodessignup = "$server/auth/verfiycode.php";
+  static const String resendcode = "$server/auth/resendcode.php";
 
 // ================================= ForgetPassword ========================== //
 
@@ -28,5 +30,9 @@ class AppLink {
 // ================================= items ========================== //
   static const String items = "$server/items/items.php";
 
-
+// ================================= favorites ========================== //
+  static const String favoriteAdd = "$server/favorite/add.php";
+  static const String favoriteRemove = "$server/favorite/remove.php";
+  static const String favoritesView = "$server/favorite/view.php";
+  static const String deletefromfavorires = "$server/favorite/deletefromfavorires.php";
 }

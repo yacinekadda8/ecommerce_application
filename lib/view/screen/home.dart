@@ -1,6 +1,7 @@
 import 'package:ecommerce_application/controller/homepage_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/data/model/itemsmodel.dart';
 import 'package:ecommerce_application/view/widget/customappbar.dart';
 import 'package:ecommerce_application/view/widget/home/customcardhome.dart';
 import 'package:ecommerce_application/view/widget/home/customtitlehome.dart';
@@ -29,7 +30,12 @@ class HomePage extends StatelessWidget {
                       CustomAppBar(
                         hintText: "search",
                         icon: Icons.notifications_outlined,
-                        onPressedIcon: () {},
+                        //onPressedNotifIcon: () {},
+                        onPressedFavoriteIcon: () {
+                          controller.goToMyfavorites(
+                            ItemsModel(),
+                          );
+                        },
                         onPressedSearch: () {},
                       ),
                       CustomCardHome(
@@ -39,9 +45,9 @@ class HomePage extends StatelessWidget {
                       CustomTitleHome(title: "39".tr), // Explore the categoreis
                       const ListCategoriesHome(),
                       CustomTitleHome(title: "40".tr),
-                       const ListItemsHome(),
+                      const ListItemsHome(),
                       CustomTitleHome(title: "41".tr),
-                       const ListItemsHome(),
+                      const ListItemsHome(),
 
                       /*
                           SizedBox(

@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_print
+
+import 'package:ecommerce_application/controller/favorite_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:flutter/material.dart';
@@ -14,18 +17,24 @@ class Items extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var myHeight = Get.height;
+    var myHalfHeight = Get.height / 2;
+    print("myHeight: $myHeight");
+    print("myHeight: $myHalfHeight");
     Get.put(ItemsControllerImp());
+    FavoriteController controllerFav = Get.put(FavoriteController());
 
     return Scaffold(
       backgroundColor: AppColor.backgroundcolor,
       body: Container(
           height: Get.height,
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(8),
           child: ListView(children: [
             CustomAppBar(
               hintText: "search",
               icon: Icons.notifications_outlined,
-              onPressedIcon: () {},
+              // onPressedNotifIcon: () {},
+              onPressedFavoriteIcon: () {},
               onPressedSearch: () {},
             ),
             const ListCategoriesItems(),
@@ -36,16 +45,18 @@ class Items extends StatelessWidget {
                     widget: GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                          childAspectRatio: 0.73,
+                          crossAxisSpacing: 4,
+                          mainAxisSpacing: 4,
+                          childAspectRatio: (Get.width) / (myHeight / 1.2),
                         ),
                         itemCount: controller.data.length,
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) {
+                          controllerFav.isFavorite[controller.data[index]
+                                  ['items_id']] =
+                              controller.data[index]['favorite'];
                           return CustomListItem(
                               //isFav: false,
                               itemsModel:

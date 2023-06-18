@@ -12,6 +12,7 @@ abstract class HomepageController extends GetxController {
   getData();
   goToItems(List catrgories, int selectedCat,String categoryid);
   goToItemsDetailsScreen(ItemsModel itemsModel);
+  goToMyfavorites(ItemsModel itemsModel);
 }
 
 class HomeControllerImp extends HomepageController {
@@ -42,8 +43,7 @@ class HomeControllerImp extends HomepageController {
   getData() async {
     statusRequest = StatusRequest.loading;
     var response = await homeData.getData();
-    // ignore: avoid_print
-    print("=============================== Controller $response ");
+    //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -67,6 +67,13 @@ class HomeControllerImp extends HomepageController {
   @override
   goToItemsDetailsScreen(itemsModel) {
     Get.toNamed("itemdetails", arguments: {
+      "itemsmodel": itemsModel,
+    });
+  }
+
+  @override
+  goToMyfavorites(itemsModel){
+    Get.toNamed("myfavorites", arguments: {
       "itemsmodel": itemsModel,
     });
   }

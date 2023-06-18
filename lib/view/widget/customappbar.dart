@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String hintText;
-  final void Function()? onPressedIcon;
+  //final void Function()? onPressedNotifIcon;
+  final void Function()? onPressedFavoriteIcon;
   final void Function()? onPressedSearch;
   final IconData icon; // Icons.notifications_outlined
 
   const CustomAppBar(
       {super.key,
       required this.hintText,
-      this.onPressedIcon,
+      //required this.onPressedNotifIcon,
       required this.icon,
-      this.onPressedSearch});
+      required this.onPressedSearch,
+      required this.onPressedFavoriteIcon});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -46,13 +48,21 @@ class CustomAppBar extends StatelessWidget {
                     )),
               ),
             )),
+            /* Container(
+              padding: const EdgeInsets.only(left: 12.0),
+              width: 60,
+              child: IconButton(
+                  onPressed: onPressedNotifIcon,
+                  icon: Icon(icon, size: 30, color: AppColor.white)),
+            ), */
             Container(
               padding: const EdgeInsets.only(left: 12.0),
               width: 60,
               child: IconButton(
-                  onPressed: onPressedIcon,
-                  icon: Icon(icon, size: 30, color: AppColor.white)),
-            )
+                  onPressed: onPressedFavoriteIcon,
+                  icon: const Icon(Icons.favorite_outline,
+                      size: 30, color: AppColor.white)),
+            ),
           ],
         ),
       ),

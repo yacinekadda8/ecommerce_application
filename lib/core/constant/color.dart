@@ -11,4 +11,5 @@ class AppColor {
 
   static const Color itemsColor =
       Color.fromARGB(95, 105, 134, 156); //#rgb(63, 73, 127)
+  static const Color red = Color.fromARGB(255, 237, 15, 92); //#rgb(63, 73, 127)
 }

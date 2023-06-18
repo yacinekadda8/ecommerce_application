@@ -2,7 +2,7 @@ import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:flutter/material.dart';
 
 ThemeData themeEnglish = ThemeData(
-  primarySwatch: Colors.pink,
+  primarySwatch: Colors.green,
   inputDecorationTheme: const InputDecorationTheme(
     filled: true, //<-- SEE HERE
     fillColor: AppColor.black, //<-- SEE HERE
@@ -38,5 +38,5 @@ ThemeData themeArabic = ThemeData(
           fontWeight: FontWeight.bold,
           fontSize: 14),
       bodyMedium: TextStyle(height: 2, color: AppColor.grey, fontSize: 14)),
-  primarySwatch: Colors.blue,
+  primarySwatch: Colors.green,
 );

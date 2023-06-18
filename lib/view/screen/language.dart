@@ -24,18 +24,26 @@ class Language extends GetView<LocaleController> {
                     fontWeight: FontWeight.bold,
                   )),
               const SizedBox(height: 20),
-              CustomButtonLang(
-                  textbutton: "العربية",
-                  onPressed: () {
-                    controller.changeLang("ar");
-                    Get.toNamed(AppRoute.onBoarding);
-                  }),
-              CustomButtonLang(
-                  textbutton: "English",
-                  onPressed: () {
-                    controller.changeLang("en");
-                    Get.toNamed(AppRoute.onBoarding);
-                  }),
+              SizedBox(
+                height: Get.height / 10,
+                width: Get.width,
+                child: CustomButtonLang(
+                    textbutton: "العربية",
+                    onPressed: () {
+                      controller.changeLang("ar");
+                      Get.toNamed(AppRoute.onBoarding);
+                    }),
+              ),
+              SizedBox(
+                height: Get.height / 10,
+                width: Get.width,
+                child: CustomButtonLang(
+                    textbutton: "English",
+                    onPressed: () {
+                      controller.changeLang("en");
+                      Get.toNamed(AppRoute.onBoarding);
+                    }),
+              ),
             ],
           )),
     );

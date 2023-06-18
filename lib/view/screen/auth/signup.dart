@@ -42,7 +42,7 @@ class SignUp extends StatelessWidget {
                       const SizedBox(height: 20),
                       CustomTextTitleAuth(text: "10".tr),
                       const SizedBox(height: 10),
-                      CustomTextBodyAuth(text: "24".tr),
+                      CustomTextBodyAuth(color: AppColor.grey, text: "24".tr),
                       const SizedBox(height: 15),
                       CustomTextFormAuth(
                         isNumber: false,

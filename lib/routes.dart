@@ -13,14 +13,17 @@ import 'package:ecommerce_application/view/screen/itemdetails.dart';
 import 'package:ecommerce_application/view/screen/items.dart';
 import 'package:ecommerce_application/view/screen/language.dart';
 import 'package:ecommerce_application/view/screen/onboarding.dart';
+import 'package:ecommerce_application/view/screen/settings.dart';
 import 'package:get/get.dart';
+
+import 'view/screen/myfavorites.dart';
 
 List<GetPage<dynamic>>? routes = [
   //GetPage(name: "/", page: () => const ItemDetails()),
   GetPage(
     name: "/",
     page: () => const Language(),
-     middlewares: [MyMiddleWare()],
+    middlewares: [MyMiddleWare()],
   ),
   // GetPage(name: "/", page: () => TestView()),
 //  Auth
@@ -36,8 +39,12 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.onBoarding, page: () => const OnBoarding()),
   GetPage(
       name: AppRoute.verfiyCodeSignUp, page: () => const VerfiyCodeSignUp()),
-  //
+  // home
   GetPage(name: AppRoute.homepage, page: () => const HomeScreen()),
   GetPage(name: AppRoute.items, page: () => const Items()),
   GetPage(name: AppRoute.itemdetails, page: () => const ItemDetails()),
+
+  GetPage(name: AppRoute.myfavorites, page: () => const Myfavorites()),
+
+  GetPage(name: AppRoute.settings , page: () => const MySettings()),
 ];

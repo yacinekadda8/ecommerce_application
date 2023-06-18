@@ -38,7 +38,7 @@ class ResetPassword extends StatelessWidget {
                         const SizedBox(height: 20),
                         CustomTextTitleAuth(text: "35".tr),
                         const SizedBox(height: 10),
-                        CustomTextBodyAuth(text: "35".tr),
+                        CustomTextBodyAuth(color: Colors.green, text: "35".tr),
                         const SizedBox(height: 15),
                         CustomTextFormAuth(
                           isNumber: false,

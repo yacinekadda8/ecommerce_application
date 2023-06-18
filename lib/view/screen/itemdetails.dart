@@ -28,7 +28,8 @@ class ItemDetails extends StatelessWidget {
             CustomAppBar(
               hintText: "search",
               icon: Icons.notifications_outlined,
-              onPressedIcon: () {},
+              // onPressedNotifIcon: () {},
+              onPressedFavoriteIcon: (){},
               onPressedSearch: () {},
             ),
             Container(
