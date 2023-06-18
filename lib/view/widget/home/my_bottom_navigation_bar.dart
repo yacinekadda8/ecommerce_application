@@ -4,37 +4,39 @@ import 'package:ecommerce_application/view/widget/home/btnbottomappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyBottomNavigationBar extends GetView<HomeScreenControllerImp> {
+class MyBottomNavigationBar extends StatelessWidget {
   const MyBottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      elevation: 0,
-      clipBehavior: Clip.antiAlias,
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 8,
-      child: Container(
-        color: AppColor.primaryblueColor,
-        height: 64,
-        child: Row(
-          children: [
-            ...List.generate(controller.listPage.length + 1, (index) {
-              int i = index > 2 ? index - 1 : index;
-              return index == 2
-                  ? const Spacer()
-                  : ButtonBottomAppBar(
-                      isActive: controller.currentpage == i ? true : false,
-                      iconData: controller.iconBottomAppBar[i],
-                      onPressed: () {
-                        controller.changePage(i);
-                      },
-                      title: 'Home',
-                    );
-            })
-          ],
+    return GetBuilder<HomeScreenControllerImp>(builder: (controller) {
+      return BottomAppBar(
+        elevation: 0,
+        clipBehavior: Clip.antiAlias,
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8,
+        child: Container(
+          color: AppColor.primaryblueColor,
+          height: 64,
+          child: Row(
+            children: [
+              ...List.generate(controller.listPage.length + 1, (index) {
+                int i = index > 2 ? index - 1 : index;
+                return index == 2
+                    ? const Spacer()
+                    : ButtonBottomAppBar(
+                        iconData: controller.iconBottomAppBar[i],
+                        onPressed: () {
+                          controller.changePage(i);
+                        },
+                        isActive: controller.currentpage == i ? true : false,
+                        title: 'Home',
+                      );
+              })
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
