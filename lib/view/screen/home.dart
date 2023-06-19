@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               child: ListView(
                 children: [
                   CustomAppBar(
-                    isSearching: controller.isSearch,
+                      isSearching: controller.isSearch,
                       textSearchController: controller.textSearchController!,
                       onChanged: (value) {
                         //value = controller.textSearchController.text;
@@ -42,10 +42,8 @@ class HomePage extends StatelessWidget {
                           ItemsModel(),
                         );
                       },
-                      onPressedSearch: () => controller.onSearchItems()
-                      ,
-                      onPressedX: () => controller.clearSearch()
-                      ),
+                      onPressedSearch: () => controller.onSearchItems(),
+                      onPressedX: () => controller.clearSearch()),
                   HandlingDataView(
                       statusRequest: controller.statusRequest,
                       widget: controller.isSearch == false
@@ -98,7 +96,7 @@ class SearchList extends GetView<HomeControllerImp> {
             //width: Get.width - 200,
             margin: const EdgeInsets.only(bottom: 6, left: 0, right: 0),
 
-            height: Get.height / 4,
+            height: Get.height / 6,
             decoration: BoxDecoration(
                 color: AppColor.primaryblueColor.withOpacity(.3),
                 borderRadius: const BorderRadius.all(Radius.circular(23)),
@@ -125,7 +123,7 @@ class SearchList extends GetView<HomeControllerImp> {
                         imageUrl:
                             "${AppLink.imageItems}/${listSearchDataModel[index].itemsImage}",
                         alignment: Alignment.center,
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.fitHeight,
                       )),
                 ),
                 Container(
@@ -138,7 +136,7 @@ class SearchList extends GetView<HomeControllerImp> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 60,
+                        height: 50,
                         child: Text(
                           "${listSearchDataModel[index].itemsName}"
                               .trim()
@@ -206,20 +204,6 @@ class SearchList extends GetView<HomeControllerImp> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          MaterialButton(
-                              onPressed: () {},
-                              child: Icon(
-                                Icons.shopping_cart,
-                                size: 55,
-                                color: AppColor.silverGreen.withOpacity(.8),
-                              )),
-                        ],
-                      )
                     ],
                   ),
                 )
