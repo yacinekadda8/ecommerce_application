@@ -155,5 +155,6 @@ class ListFavoriteItems extends GetView<FavoritesViewController> {
         ),
       ),
     );
+  
   }
 }

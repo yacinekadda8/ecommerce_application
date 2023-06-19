@@ -1,7 +1,8 @@
+import 'package:ecommerce_application/controller/setting_controller.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/core/constant/imgaeasset.dart';
 import 'package:flutter/material.dart';
-
-import '../widget/custom_botification_btn.dart';
+import 'package:get/get.dart';
 
 class MySettings extends StatelessWidget {
   const MySettings({
@@ -10,20 +11,204 @@ class MySettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsController controller = Get.put(SettingsController());
     return Scaffold(
-        backgroundColor: AppColor.backgroundcolor,
-        appBar: AppBar(
-          actionsIconTheme: const IconThemeData(color: AppColor.silverGreen),
-          elevation: 0,
-          iconTheme: const IconThemeData(color: AppColor.silverGreen),
-          backgroundColor: AppColor.backgroundcolor,
-          actions: const [CustomNotificationBtn()],
-        ),
-        body: const Center(
-          child: Text('My settings',
-              style: TextStyle(
-                fontSize: 40,
-              )),
-        ));
+      backgroundColor: AppColor.backgroundcolor,
+      body: SizedBox(
+          child: ListView(
+        children: [
+          Stack(
+            //alignment: Alignment.centerLeft,
+            children: [
+              Container(color: AppColor.silverGreen, height: Get.width / 1.6),
+              Positioned(
+                  child: Padding(
+                padding:
+                    const EdgeInsets.only(left: 26.0, right: 26.0, top: 30.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Settings',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: AppColor.backgroundcolor,
+                          fontFamily: "arial",
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          //color: Colors.red,
+                          child: Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                color: AppColor.white,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: const CircleAvatar(
+                              radius: 40,
+                              backgroundColor: AppColor.white,
+                              backgroundImage:
+                                  AssetImage(AppImageAsset.settingsPic),
+                              //foregroundImage: AssetImage(AppImageAsset.settingsPic),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: Get.width / 1.7,
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          //color: Colors.yellow,
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Merahi Yacine',
+                                textAlign: TextAlign.start,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    fontSize: 28,
+                                    color: AppColor.white,
+                                    fontFamily: "sans",
+                                    height: 1.4,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Yacine.mrh7@gmail.com',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: AppColor.backgroundcolor,
+                                    fontFamily: "sans",
+                                    height: 1.4,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ))
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Card(
+              color: AppColor.backgroundcolor,
+              child: Column(children: [
+                ListTile(
+                  title: const Text("Notification",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  leading:
+                      const Icon(Icons.notification_important, color: Colors.green),
+                  trailing: Switch(
+                    value: true,
+                    onChanged: (value) {
+                      
+                    },
+                  ),
+                  tileColor: AppColor.backgroundcolor,
+                  iconColor: AppColor.white,
+                  textColor: AppColor.white,
+                ),
+                const ListTile(
+                  tileColor: AppColor.backgroundcolor,
+                  iconColor: AppColor.white,
+                  textColor: AppColor.white,
+                  title: Text("Adresse",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  leading: Icon(Icons.location_on, color: Colors.red),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                ),
+
+                /* Divider(
+                    height: 14, color: AppColor.backgroundcolor, thickness: 2), */
+
+                const ListTile(
+                  title: Text("App info",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  leading: Icon(Icons.info, color: Colors.yellow),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  tileColor: AppColor.backgroundcolor,
+                  iconColor: AppColor.white,
+                  textColor: AppColor.white,
+                ),
+                const ListTile(
+                  title: Text("Contact us",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  leading: Icon(Icons.mail, color: Colors.orange),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  tileColor: AppColor.backgroundcolor,
+                  iconColor: AppColor.white,
+                  textColor: AppColor.white,
+                ),
+                ListTile(
+                  title: const Text("Logout",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  leading:
+                      const Icon(Icons.exit_to_app_rounded, color: Colors.pink),
+                  trailing: const Icon(Icons.keyboard_arrow_right),
+                  tileColor: AppColor.backgroundcolor,
+                  iconColor: AppColor.white,
+                  textColor: AppColor.white,
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              backgroundColor: AppColor.silverGreen,
+                              title: const Text('Logout Confirmation'),
+                              titleTextStyle: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: AppColor.backgroundcolor,
+                              ),
+                              content: const Text(
+                                  'Are you sure you want to logout?'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('Cancel',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      )),
+                                  onPressed: () {
+                                    Navigator.pop(context); // Close the dialog
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text('Logout',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColor.red,
+                                        fontSize: 20,
+                                      )),
+                                  onPressed: () {
+                                    // Perform logout logic here
+                                    controller.logout();
+                                    // Navigator.pop(context); // Close the dialog
+                                  },
+                                ),
+                              ],
+                            ));
+                  },
+                ),
+              ]),
+            ),
+          )
+        ],
+      )),
+    );
   }
 }

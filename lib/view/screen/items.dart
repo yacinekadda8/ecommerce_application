@@ -18,9 +18,6 @@ class Items extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var myHeight = Get.height;
-    var myHalfHeight = Get.height / 2;
-    print("myHeight: $myHeight");
-    print("myHeight: $myHalfHeight");
     Get.put(ItemsControllerImp());
     FavoriteController controllerFav = Get.put(FavoriteController());
 
@@ -30,13 +27,14 @@ class Items extends StatelessWidget {
           height: Get.height,
           padding: const EdgeInsets.all(8),
           child: ListView(children: [
-            CustomAppBar(
+    
+            /* CustomAppBar(
               hintText: "search",
               icon: Icons.notifications_outlined,
               // onPressedNotifIcon: () {},
               onPressedFavoriteIcon: () {},
               onPressedSearch: () {},
-            ),
+            ), */
             const ListCategoriesItems(),
             const SizedBox(height: 5),
             GetBuilder<ItemsControllerImp>(

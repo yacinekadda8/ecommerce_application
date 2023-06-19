@@ -10,12 +10,12 @@ class CustomBoxColor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 2),
+      margin: const EdgeInsets.only(left: 3),
       decoration: BoxDecoration(
-          border: Border.all(color: bordercolor!, width: 4),
+          border: Border.all(color: bordercolor!, width: 2),
           borderRadius: const BorderRadius.all(Radius.circular(15))),
-      height: 55,
-      width: 85,
+      height: 50,
+      width: 70,
       child: Center(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 6.0),

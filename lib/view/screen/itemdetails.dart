@@ -25,13 +25,25 @@ class ItemDetails extends StatelessWidget {
         color: AppColor.backgroundcolor,
         child: ListView(
           children: [
+/*
             CustomAppBar(
-              hintText: "search",
-              icon: Icons.notifications_outlined,
-              // onPressedNotifIcon: () {},
-              onPressedFavoriteIcon: (){},
-              onPressedSearch: () {},
-            ),
+                    textSearchController: controller.textSearchController!,
+                    onChanged: (value) {
+                      //value = controller.textSearchController.text;
+                      controller.checkSearch(value);
+                    },
+                    hintText: "search",
+                    icon: Icons.notifications_outlined,
+                    //onPressedNotifIcon: () {},
+                    onPressedFavoriteIcon: () {
+                      controller.goToMyfavorites(
+                        ItemsModel(),
+                      );
+                    },
+                    onPressedSearch: () {
+                      controller.onSearchItems();
+                    },
+                  ), */
             Container(
               height: Get.height / 2.5,
               color: AppColor.white,

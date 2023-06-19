@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/controller/homepage_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/data/model/itemsmodel.dart';
+import 'package:ecommerce_application/linkapi.dart';
 import 'package:ecommerce_application/view/widget/customappbar.dart';
 import 'package:ecommerce_application/view/widget/home/customcardhome.dart';
 import 'package:ecommerce_application/view/widget/home/customtitlehome.dart';
 import 'package:ecommerce_application/view/widget/home/list_categories_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 import '../widget/home/listitemshome.dart';
 
@@ -19,93 +22,310 @@ class HomePage extends StatelessWidget {
     Get.put(HomeControllerImp());
 
     return GetBuilder<HomeControllerImp>(
-        builder: (controller) => HandlingDataView(
-            statusRequest: controller.statusRequest,
-            widget: Container(
-                color: AppColor.backgroundcolor,
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: ListView(
-                    children: [
-                      CustomAppBar(
-                        hintText: "search",
-                        icon: Icons.notifications_outlined,
-                        //onPressedNotifIcon: () {},
-                        onPressedFavoriteIcon: () {
-                          controller.goToMyfavorites(
-                            ItemsModel(),
-                          );
-                        },
-                        onPressedSearch: () {},
-                      ),
-                      CustomCardHome(
-                        title: "42".tr,
-                        subtitle: "43".tr, // cashback
-                      ),
-                      CustomTitleHome(title: "39".tr), // Explore the categoreis
-                      const ListCategoriesHome(),
-                      CustomTitleHome(title: "40".tr),
-                      const ListItemsHome(),
-                      CustomTitleHome(title: "41".tr),
-                      const ListItemsHome(),
-
-                      /*
-                          SizedBox(
-                            height: 500,
-                            child: GridView.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                ),
-                                itemCount: 10,
-                                scrollDirection: Axis.vertical,
-                                itemBuilder: (context, index) {
-                                  return Stack(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: AppColor.primaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(18),
-                                        ),
-                                        height: 240,
-                                        width: 200,
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.only(top: 10),
-                                        height: 140,
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(18),
-                                        ),
-                                        child: Image.asset(
-                                          "assets/images/products/p1.jpg",
-                                          fit: BoxFit.fitHeight,
-                                        ),
-                                      ),
-                                      const Positioned(
-                                          top: 140,
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 20),
-                                            child: Text(
-                                              "MOTHERBOARD",
-                                              style: TextStyle(
-                                                  color: AppColor.white,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ))
-                                    ],
-                                  );
-                                }),
-                          ),
-                          */
-                    ],
+        builder: (controller) => Container(
+            color: AppColor.backgroundcolor,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: ListView(
+                children: [
+                  CustomAppBar(
+                    textSearchController: controller.textSearchController!,
+                    onChanged: (value) {
+                      //value = controller.textSearchController.text;
+                      controller.checkSearch(value);
+                    },
+                    hintText: "search",
+                    icon: Icons.notifications_outlined,
+                    //onPressedNotifIcon: () {},
+                    onPressedFavoriteIcon: () {
+                      controller.goToMyfavorites(
+                        ItemsModel(),
+                      );
+                    },
+                    onPressedSearch: () {
+                      controller.onSearchItems();
+                    },
                   ),
-                ))));
+                  HandlingDataView(
+                      statusRequest: controller.statusRequest,
+                      widget: controller.isSearch == false
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomCardHome(
+                                  title: "42".tr,
+                                  subtitle: "43".tr, // cashback
+                                ),
+                                CustomTitleHome(
+                                    title: "39".tr), // Explore the categoreis
+                                const ListCategoriesHome(),
+                                CustomTitleHome(title: "40".tr),
+                                const ListItemsHome(),
+                                CustomTitleHome(title: "41".tr),
+                                const ListItemsHome(),
+                              ],
+                            )
+                          : SearchList(
+                              listSearchDataModel:
+                                  controller.listSearchDataModel,
+                              
+                            ))
+                ],
+              ),
+            )));
   }
 }
+
+class SearchList extends GetView<HomeControllerImp> {
+  final List<ItemsModel> listSearchDataModel;
+  const SearchList({
+    super.key,
+    required this.listSearchDataModel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: listSearchDataModel.length,
+      /*
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 4,
+        mainAxisSpacing: 4,
+        childAspectRatio: (Get.width) / (myHeight / 1.2),
+      ),*/
+      itemBuilder: (BuildContext context, int index) {
+        //return Text("${listSearchData[index].itemsName}");
+        return InkWell(
+          onTap: () {
+            controller.goToItemsDetailsScreen(listSearchDataModel[index]);
+          },
+          child: Container(
+            //width: Get.width - 200,
+            margin: const EdgeInsets.only(bottom: 6, left: 0, right: 0),
+
+            height: Get.height / 4,
+            decoration: BoxDecoration(
+                color: AppColor.primaryblueColor.withOpacity(.3),
+                borderRadius: const BorderRadius.all(Radius.circular(23)),
+                border: Border.all(
+                  width: 7.2,
+                  color: AppColor.white,
+                )),
+            /*  decoration: BoxDecoration(color: AppColor.itemsColor, gradient: const LinearGradient(colors: [AppColor.white,AppColor.primaryblueColor,],begin: Alignment.topCenter,end: Alignment.bottomCenter, ), borderRadius: BorderRadius.circular(8),),*/
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  //margin: const EdgeInsets.all(4.0),
+                  decoration: const BoxDecoration(
+                    color: AppColor.white,
+                    //borderRadius: BorderRadius.circular(5),
+                  ),
+                  width: Get.width / 2.8,
+                  height: Get.height,
+                  child: Hero(
+                      tag: "${listSearchDataModel[index].itemsId}",
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "${AppLink.imageItems}/${listSearchDataModel[index].itemsImage}",
+                        alignment: Alignment.center,
+                        fit: BoxFit.fitWidth,
+                      )),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(left: 10, right: 4),
+                  padding: const EdgeInsets.only(left: 2, right: 2),
+                  width: Get.width / 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 60,
+                        child: Text(
+                          "${listSearchDataModel[index].itemsName}"
+                              .trim()
+                              .toUpperCase(),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          softWrap: true,
+                          style: const TextStyle(
+                            fontFamily: "Courier",
+                            color: AppColor.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "DZD",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontFamily: "Courier",
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              color: AppColor.red,
+                              height: 1.25,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          SizedBox(
+                            width: Get.width / 5.5,
+                            child: Text(
+                              listSearchDataModel[index].itemsPrice.toString(),
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                fontFamily: "Courier",
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                                color: AppColor.white,
+                                height: 1.25,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            "${listSearchDataModel[index].itemsDiscount} %OFF"
+                                .toUpperCase(),
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                              fontFamily: "sans",
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                              color: AppColor.backgroundcolor,
+                              backgroundColor:
+                                  AppColor.silverGreen.withOpacity(.8),
+                              height: 1.5,
+                              letterSpacing: 0.01,
+                              wordSpacing: 0.1,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MaterialButton(
+                              onPressed: () {},
+                              child: Icon(
+                                Icons.shopping_cart,
+                                size: 55,
+                                color: AppColor.silverGreen.withOpacity(.8),
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+/*
+
+Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: AppColor.white,
+          ),
+          height: Get.height,
+
+          /*  decoration: BoxDecoration(color: AppColor.itemsColor, gradient: const LinearGradient(colors: [AppColor.white,AppColor.primaryblueColor,],begin: Alignment.topCenter,end: Alignment.bottomCenter, ), borderRadius: BorderRadius.circular(8),),*/
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColor.white,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                width: Get.width,
+                height: Get.height / 5.5,
+                child: Hero(
+                    tag: "${listSearchData[index].itemsId}",
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "${AppLink.imageItems}/${listSearchData[index].itemsImage}",
+                      alignment: Alignment.center,
+                      fit: BoxFit.contain,
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  "${listSearchData[index].itemsName}".toUpperCase(),
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: "sans",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 19,
+                    overflow: TextOverflow.ellipsis,
+                    color: AppColor.primaryblueColor,
+                  ),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "${listSearchData[index].itemsPrice.toString()} DZD",
+                  style: const TextStyle(
+                    fontFamily: "sans",
+                    fontSize: 26,
+                    color: AppColor.silverGreen,
+                    fontWeight: FontWeight.bold,
+                    height: 2.2,
+                    letterSpacing: 0.01,
+                    wordSpacing: 0.1,
+                  ),
+                ),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "${listSearchData[index].itemsDiscount} % OFF"
+                        .toUpperCase(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: "sans",
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                      color: AppColor.backgroundcolor,
+                      backgroundColor: AppColor.white,
+                      height: .9,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        );
+      
+
+
+*/

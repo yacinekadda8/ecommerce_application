@@ -1,9 +1,11 @@
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../core/functions/right_and_left.dart';
+import '../../../controller/homepage_controller.dart';
 
-class CustomCardHome extends StatelessWidget {
+
+class CustomCardHome extends GetView<HomeControllerImp> {
   final String title;
   final String subtitle;
 
@@ -34,10 +36,11 @@ class CustomCardHome extends StatelessWidget {
               )),
         ),
       ),
-      rightAndLeft(
+      
           Positioned(
             top: -24,
-            left: -28,
+            right: controller.lang == "en" ?  -28 : null ,
+            left: controller.lang == "ar" ?  -28 : null ,
             child: Container(
               height: 140,
               width: 140,
@@ -47,18 +50,6 @@ class CustomCardHome extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            top: -24,
-            right: -28,
-            child: Container(
-              height: 140,
-              width: 140,
-              decoration: BoxDecoration(
-                color: AppColor.silverGreen,
-                borderRadius: BorderRadius.circular(160),
-              ),
-            ),
-          )),
     ]);
   }
 }

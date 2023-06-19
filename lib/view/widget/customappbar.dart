@@ -6,15 +6,20 @@ class CustomAppBar extends StatelessWidget {
   //final void Function()? onPressedNotifIcon;
   final void Function()? onPressedFavoriteIcon;
   final void Function()? onPressedSearch;
-  final IconData icon; // Icons.notifications_outlined
+  final IconData icon; //
+  final void Function(String)? onChanged;
+  final TextEditingController textSearchController;
 
-  const CustomAppBar(
-      {super.key,
-      required this.hintText,
-      //required this.onPressedNotifIcon,
-      required this.icon,
-      required this.onPressedSearch,
-      required this.onPressedFavoriteIcon});
+  const CustomAppBar({
+    super.key,
+    required this.hintText,
+    //required this.onPressedNotifIcon,
+    required this.icon,
+    required this.onPressedSearch,
+    required this.onPressedFavoriteIcon,
+    required this.onChanged,
+    required this.textSearchController,
+  });
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,6 +29,10 @@ class CustomAppBar extends StatelessWidget {
           children: [
             Expanded(
                 child: TextFormField(
+              onFieldSubmitted: onChanged,
+              textInputAction: TextInputAction.search,
+              controller: textSearchController,
+              onChanged: onChanged,
               style: const TextStyle(
                 color: AppColor.white,
               ),
