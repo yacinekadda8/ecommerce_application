@@ -3,9 +3,11 @@
 import 'package:ecommerce_application/controller/favorite_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/view/screen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/homepage_controller.dart';
 import '../../controller/items_controller.dart';
 import '../../data/model/itemsmodel.dart';
 import '../widget/customappbar.dart';
@@ -21,21 +23,40 @@ class Items extends StatelessWidget {
     Get.put(ItemsControllerImp());
     FavoriteController controllerFav = Get.put(FavoriteController());
 
-    return Scaffold(
+    return GetBuilder<HomeControllerImp>(
+        builder: (homecontroller) =>
+     Scaffold(
       backgroundColor: AppColor.backgroundcolor,
       body: Container(
           height: Get.height,
           padding: const EdgeInsets.all(8),
           child: ListView(children: [
     
-            /* CustomAppBar(
-              hintText: "search",
-              icon: Icons.notifications_outlined,
-              // onPressedNotifIcon: () {},
-              onPressedFavoriteIcon: () {},
-              onPressedSearch: () {},
-            ), */
-            const ListCategoriesItems(),
+            CustomAppBar(
+                    textSearchController: homecontroller.textSearchController!,
+                    onChanged: (value) {
+                      //value = controller.textSearchController.text;
+                      homecontroller.checkSearch(value);
+                    },
+                    hintText: "search",
+                    icon: Icons.notifications_outlined,
+                    //onPressedNotifIcon: () {},
+                    onPressedFavoriteIcon: () {
+                      homecontroller.goToMyfavorites(
+                        ItemsModel(),
+                      );
+                    },
+                    onPressedSearch: () {
+                      homecontroller.onSearchItems();
+                    },
+                  ),
+                  HandlingDataView(
+                      statusRequest: homecontroller.statusRequest,
+                      widget: homecontroller.isSearch == false
+                          ?
+                  Column(
+                    children: [
+                                  const ListCategoriesItems(),
             const SizedBox(height: 5),
             GetBuilder<ItemsControllerImp>(
                 builder: (controller) => HandlingDataView(
@@ -60,7 +81,13 @@ class Items extends StatelessWidget {
                               itemsModel:
                                   ItemsModel.fromJson(controller.data[index]));
                         })))
-          ])),
-    );
+                    ],
+                  ) : SearchList(
+                              listSearchDataModel:
+                                  homecontroller.listSearchDataModel,
+                              
+                            )
+     )])),
+    ));
   }
 }

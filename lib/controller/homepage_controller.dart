@@ -16,13 +16,14 @@ abstract class HomepageController extends GetxController {
   goToMyfavorites(ItemsModel itemsModel);
 }
 
-class HomeControllerImp extends HomepageController {
+class HomeControllerImp extends SearchMixController {
   MyServices myServices = Get.find();
   List<ItemsModel> listSearchDataModel = [];
   String? username;
   String? id;
   String? lang;
   TextEditingController? textSearchController;
+  bool isSearch = false;
 
   HomeData homeData = HomeData(Get.find());
   late StatusRequest statusRequest;
@@ -30,7 +31,7 @@ class HomeControllerImp extends HomepageController {
   List categories = [];
   List items = [];
 
-  bool isSearch = false;
+
 
   @override
   goToItemsDetailsScreen(itemsModel) {
@@ -39,18 +40,7 @@ class HomeControllerImp extends HomepageController {
     });
   }
 
-  checkSearch(value) {
-    if (value == "") {
-      isSearch = false;
-    }
-    update();
-  }
 
-  onSearchItems() {
-    search();
-    isSearch = true;
-    update();
-  }
 
   @override
   void onInit() {
@@ -85,22 +75,7 @@ class HomeControllerImp extends HomepageController {
     update();
   }
 
-  search() async {
-    statusRequest = StatusRequest.loading;
-    var response = await homeData.searchData(textSearchController!.text);
-    statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        listSearchDataModel.clear();
-        List responseData = response['data'];
-        listSearchDataModel
-            .addAll(responseData.map((e) => ItemsModel.fromJson(e)));
-      } else {
-        statusRequest = StatusRequest.failure;
-      }
-    }
-    update();
-  }
+
 
   @override
   goToItems(catrgories, selectedCat, categoryid) {
@@ -119,4 +94,43 @@ class HomeControllerImp extends HomepageController {
       "itemsmodel": itemsModel,
     });
   }
+}
+class SearchMixController extends GetxController {
+  HomeData homeData = HomeData(Get.find());
+  late StatusRequest statusRequest;
+   TextEditingController? textSearchController;
+    bool isSearch = false;
+    List<ItemsModel> listSearchDataModel = [];
+
+
+    search() async {
+    statusRequest = StatusRequest.loading;
+    var response = await homeData.searchData(textSearchController!.text);
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        listSearchDataModel.clear();
+        List responseData = response['data'];
+        listSearchDataModel
+            .addAll(responseData.map((e) => ItemsModel.fromJson(e)));
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
+
+    checkSearch(value) {
+    if (value == "") {
+      isSearch = false;
+    }
+    update();
+  }
+
+  onSearchItems() {
+    search();
+    isSearch = true;
+    update();
+  }
+  
 }

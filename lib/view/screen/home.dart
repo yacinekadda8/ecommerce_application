@@ -89,13 +89,6 @@ class SearchList extends GetView<HomeControllerImp> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: listSearchDataModel.length,
-      /*
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 4,
-        mainAxisSpacing: 4,
-        childAspectRatio: (Get.width) / (myHeight / 1.2),
-      ),*/
       itemBuilder: (BuildContext context, int index) {
         //return Text("${listSearchData[index].itemsName}");
         return InkWell(
