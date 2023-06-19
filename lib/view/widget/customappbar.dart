@@ -1,25 +1,31 @@
-import 'package:ecommerce_application/core/constant/color.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:ecommerce_application/core/constant/color.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String hintText;
   //final void Function()? onPressedNotifIcon;
   final void Function()? onPressedFavoriteIcon;
   final void Function()? onPressedSearch;
+  final void Function()? onPressedX;
   final IconData icon; //
   final void Function(String)? onChanged;
   final TextEditingController textSearchController;
+  final bool isSearching ;
 
   const CustomAppBar({
-    super.key,
-    required this.hintText,
+    Key? key,
     //required this.onPressedNotifIcon,
-    required this.icon,
-    required this.onPressedSearch,
+    required this.hintText,
     required this.onPressedFavoriteIcon,
+    required this.onPressedSearch,
+    this.onPressedX,
+    required this.icon,
     required this.onChanged,
     required this.textSearchController,
-  });
+    required this.isSearching,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -47,6 +53,10 @@ class CustomAppBar extends StatelessWidget {
                   icon: const Icon(Icons.search_outlined,
                       size: 25, color: AppColor.white),
                 ),
+                prefixIcon: isSearching ? IconButton(
+                  onPressed: onPressedX,
+                  icon: const Icon(Icons.clear, size: 20, color: AppColor.grey),
+                ) : null,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(40),
                 ),

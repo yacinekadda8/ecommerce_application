@@ -11,7 +11,6 @@ import 'package:ecommerce_application/view/widget/home/list_categories_home.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../widget/home/listitemshome.dart';
 
 class HomePage extends StatelessWidget {
@@ -29,23 +28,24 @@ class HomePage extends StatelessWidget {
               child: ListView(
                 children: [
                   CustomAppBar(
-                    textSearchController: controller.textSearchController!,
-                    onChanged: (value) {
-                      //value = controller.textSearchController.text;
-                      controller.checkSearch(value);
-                    },
-                    hintText: "search",
-                    icon: Icons.notifications_outlined,
-                    //onPressedNotifIcon: () {},
-                    onPressedFavoriteIcon: () {
-                      controller.goToMyfavorites(
-                        ItemsModel(),
-                      );
-                    },
-                    onPressedSearch: () {
-                      controller.onSearchItems();
-                    },
-                  ),
+                    isSearching: controller.isSearch,
+                      textSearchController: controller.textSearchController!,
+                      onChanged: (value) {
+                        //value = controller.textSearchController.text;
+                        controller.checkSearch(value);
+                      },
+                      hintText: "search",
+                      icon: Icons.notifications_outlined,
+                      //onPressedNotifIcon: () {},
+                      onPressedFavoriteIcon: () {
+                        controller.goToMyfavorites(
+                          ItemsModel(),
+                        );
+                      },
+                      onPressedSearch: () => controller.onSearchItems()
+                      ,
+                      onPressedX: () => controller.clearSearch()
+                      ),
                   HandlingDataView(
                       statusRequest: controller.statusRequest,
                       widget: controller.isSearch == false
@@ -68,7 +68,6 @@ class HomePage extends StatelessWidget {
                           : SearchList(
                               listSearchDataModel:
                                   controller.listSearchDataModel,
-                              
                             ))
                 ],
               ),

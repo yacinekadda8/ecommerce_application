@@ -18,29 +18,24 @@ abstract class HomepageController extends GetxController {
 
 class HomeControllerImp extends SearchMixController {
   MyServices myServices = Get.find();
-  List<ItemsModel> listSearchDataModel = [];
+  //List<ItemsModel> listSearchDataModel = [];
   String? username;
   String? id;
   String? lang;
-  TextEditingController? textSearchController;
-  bool isSearch = false;
+  //TextEditingController? textSearchController;
+  //bool isSearch = false;
 
-  HomeData homeData = HomeData(Get.find());
-  late StatusRequest statusRequest;
+  //HomeData homeData = HomeData(Get.find());
+  //late StatusRequest statusRequest;
   //List data = [];
   List categories = [];
   List items = [];
 
-
-
-  @override
   goToItemsDetailsScreen(itemsModel) {
     Get.toNamed("itemdetails", arguments: {
       "itemsmodel": itemsModel,
     });
   }
-
-
 
   @override
   void onInit() {
@@ -51,14 +46,12 @@ class HomeControllerImp extends SearchMixController {
     super.onInit();
   }
 
-  @override
   void initialdata() {
     username = myServices.sharedPreferences.getString("username");
     id = myServices.sharedPreferences.getString("id");
     lang = myServices.sharedPreferences.getString("lang");
   }
 
-  @override
   getData() async {
     statusRequest = StatusRequest.loading;
     var response = await homeData.getData();
@@ -75,9 +68,6 @@ class HomeControllerImp extends SearchMixController {
     update();
   }
 
-
-
-  @override
   goToItems(catrgories, selectedCat, categoryid) {
     Get.toNamed(AppRoute.items, arguments: {
       "categories": categories,
@@ -86,24 +76,21 @@ class HomeControllerImp extends SearchMixController {
     });
   }
 
-
-
-  @override
   goToMyfavorites(itemsModel) {
     Get.toNamed("myfavorites", arguments: {
       "itemsmodel": itemsModel,
     });
   }
 }
+
 class SearchMixController extends GetxController {
   HomeData homeData = HomeData(Get.find());
   late StatusRequest statusRequest;
-   TextEditingController? textSearchController;
-    bool isSearch = false;
-    List<ItemsModel> listSearchDataModel = [];
+  TextEditingController? textSearchController;
+  bool isSearch = false;
+  List<ItemsModel> listSearchDataModel = [];
 
-
-    search() async {
+  search() async {
     statusRequest = StatusRequest.loading;
     var response = await homeData.searchData(textSearchController!.text);
     statusRequest = handlingData(response);
@@ -120,7 +107,13 @@ class SearchMixController extends GetxController {
     update();
   }
 
-    checkSearch(value) {
+  clearSearch() {
+    listSearchDataModel.clear();
+    textSearchController!.clear();
+    update();
+  }
+
+  checkSearch(value) {
     if (value == "") {
       isSearch = false;
     }
@@ -132,5 +125,4 @@ class SearchMixController extends GetxController {
     isSearch = true;
     update();
   }
-  
 }

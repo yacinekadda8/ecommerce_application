@@ -33,6 +33,7 @@ class Items extends StatelessWidget {
           child: ListView(children: [
     
             CustomAppBar(
+              isSearching: homecontroller.isSearch,
                     textSearchController: homecontroller.textSearchController!,
                     onChanged: (value) {
                       //value = controller.textSearchController.text;
@@ -46,9 +47,10 @@ class Items extends StatelessWidget {
                         ItemsModel(),
                       );
                     },
-                    onPressedSearch: () {
-                      homecontroller.onSearchItems();
-                    },
+                    onPressedSearch: () 
+                    =>  homecontroller.onSearchItems()
+                    ,
+                    onPressedX: () => homecontroller.clearSearch()
                   ),
                   HandlingDataView(
                       statusRequest: homecontroller.statusRequest,

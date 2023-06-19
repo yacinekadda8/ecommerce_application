@@ -4,7 +4,7 @@ import 'package:ecommerce_application/view/widget/itemsdetails/item_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widget/customappbar.dart';
+//import '../widget/customappbar.dart';
 import '../widget/itemsdetails/buy_and_addtocard.dart';
 import '../widget/itemsdetails/details_description.dart';
 import '../widget/itemsdetails/favorate_icon.dart';
