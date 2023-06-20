@@ -104,16 +104,17 @@ class MySettings extends StatelessWidget {
               color: AppColor.backgroundcolor,
               child: Column(children: [
                 ListTile(
+                  onTap: () {
+                    
+                  },
                   title: const Text("Notification",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  leading:
-                      const Icon(Icons.notification_important, color: Colors.green),
+                  leading: const Icon(Icons.notification_important,
+                      color: Colors.green),
                   trailing: Switch(
-                    value: true,
-                    onChanged: (value) {
-                      
-                    },
+                    value: controller.isSwitchOn,
+                    onChanged: (val) {},
                   ),
                   tileColor: AppColor.backgroundcolor,
                   iconColor: AppColor.white,
@@ -143,15 +144,18 @@ class MySettings extends StatelessWidget {
                   iconColor: AppColor.white,
                   textColor: AppColor.white,
                 ),
-                const ListTile(
-                  title: Text("Contact us",
+                ListTile(
+                  title: const Text("Contact us",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  leading: Icon(Icons.mail, color: Colors.orange),
-                  trailing: Icon(Icons.keyboard_arrow_right),
+                  leading: const Icon(Icons.mail, color: Colors.orange),
+                  trailing: const Icon(Icons.keyboard_arrow_right),
                   tileColor: AppColor.backgroundcolor,
                   iconColor: AppColor.white,
                   textColor: AppColor.white,
+                  onTap: () {
+                    controller.contactUs();
+                  },
                 ),
                 ListTile(
                   title: const Text("Logout",
