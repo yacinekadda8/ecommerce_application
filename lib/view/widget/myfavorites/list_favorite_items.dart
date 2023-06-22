@@ -19,7 +19,7 @@ class ListFavoriteItems extends GetView<FavoritesViewController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //controller.goToItemsDetailsScreen(itemsModel);
+       // controller.goToItemsDetailsScreen(itemsModel);
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
@@ -155,6 +155,5 @@ class ListFavoriteItems extends GetView<FavoritesViewController> {
         ),
       ),
     );
-  
   }
 }

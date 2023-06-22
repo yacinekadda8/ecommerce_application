@@ -30,11 +30,10 @@ class HomeControllerImp extends SearchMixController {
   //List data = [];
   List categories = [];
   List items = [];
+  List settingsData = [];
 
   goToItemsDetailsScreen(itemsModel) {
-    Get.toNamed("itemdetails", arguments: {
-      "itemsmodel": itemsModel,
-    });
+    Get.toNamed("itemdetails", arguments: {"itemsmodel": itemsModel});
   }
 
   @override
@@ -61,6 +60,7 @@ class HomeControllerImp extends SearchMixController {
       if (response['status'] == "success") {
         categories.addAll(response['categories']);
         items.addAll(response['items']);
+        settingsData.addAll(response['settings']);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -86,8 +86,10 @@ class HomeControllerImp extends SearchMixController {
 class SearchMixController extends GetxController {
   HomeData homeData = HomeData(Get.find());
   late StatusRequest statusRequest;
+
   TextEditingController? textSearchController;
   bool isSearch = false;
+
   List<ItemsModel> listSearchDataModel = [];
 
   search() async {
@@ -108,13 +110,16 @@ class SearchMixController extends GetxController {
   }
 
   clearSearch() {
-    listSearchDataModel.clear();
     textSearchController!.clear();
+    listSearchDataModel.clear();
+    statusRequest = StatusRequest.none;
+    isSearch = false;
     update();
   }
 
   checkSearch(value) {
     if (value == "") {
+      statusRequest = StatusRequest.none;
       isSearch = false;
     }
     update();

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_application/controller/homepage_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/core/functions/translate_database.dart';
 import 'package:ecommerce_application/data/model/itemsmodel.dart';
 import 'package:ecommerce_application/linkapi.dart';
 import 'package:ecommerce_application/view/widget/customappbar.dart';
@@ -18,12 +19,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeControllerImp());
+    HomeControllerImp controllerImp = Get.put(HomeControllerImp());
 
     return GetBuilder<HomeControllerImp>(
-        builder: (controller) => Container(
-            color: AppColor.backgroundcolor,
-            child: Container(
+        builder: (controller) => SizedBox(
+                //color: AppColor.backgroundcolor,
+                child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 12.0),
               child: ListView(
                 children: [
@@ -49,11 +50,21 @@ class HomePage extends StatelessWidget {
                       widget: controller.isSearch == false
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                CustomCardHome(
-                                  title: "42".tr,
-                                  subtitle: "43".tr, // cashback
-                                ),
+                                controllerImp.settingsData.isNotEmpty ? 
+                                  CustomCardHome(
+                                    title:
+                                        "${translateDatabase(controllerImp.settingsData[0]['settings_title_ar'], controllerImp.settingsData[0]['settings_title'])}", //
+                                    subtitle:
+                                        "${translateDatabase(controllerImp.settingsData[0]['settings_body_ar'], controllerImp.settingsData[0]['settings_body'])}", // cashback
+                                  ) : const CustomCardHome(
+                                    title:
+                                        "Welcome", //
+                                    subtitle:
+                                        "Happy to see you", // cashback
+                                  ),
+                                  
                                 CustomTitleHome(
                                     title: "39".tr), // Explore the categoreis
                                 const ListCategoriesHome(),

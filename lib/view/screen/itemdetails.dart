@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../widget/itemsdetails/buy_and_addtocard.dart';
 import '../widget/itemsdetails/details_description.dart';
 import '../widget/itemsdetails/favorate_icon.dart';
-import '../widget/itemsdetails/sub_items_list.dart';
 import '../widget/itemsdetails/item_image.dart';
 import '../widget/itemsdetails/price_and_discount.dart';
 import '../widget/itemsdetails/quantity.dart';
@@ -64,7 +63,7 @@ class ItemDetails extends StatelessWidget {
                   ItemName(),
                   PriceAndDiscount(),
                   DetailsDiscriotion(),
-                  SubItemsList(),
+                  // SubItemsList(),
                   SizedBox(height: 20),
                   Quantity(),
                   BuyAndAddToCard(),

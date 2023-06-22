@@ -11,7 +11,13 @@ class FavoritesViewController extends GetxController {
   MyServices myServices = Get.find();
   late StatusRequest statusRequest;
   List<MyFavoriteModel> data = [];
-
+  /*
+      goToItemsDetailsScreen(itemsModel) {
+    Get.toNamed("itemdetails", arguments: {
+      "itemsmodel": itemsModel,
+    });
+  }
+  */
   viewFavorites() async {
     data.clear();
     statusRequest = StatusRequest.loading;

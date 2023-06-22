@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/favorites_view_controller.dart';
-import '../widget/custom_botification_btn.dart';
+import '../widget/custom_notification_btn.dart';
 import '../widget/myfavorites/list_favorite_items.dart';
 
 class Myfavorites extends StatelessWidget {

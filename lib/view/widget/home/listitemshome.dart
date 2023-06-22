@@ -8,7 +8,6 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class ListItemsHome extends GetView<HomeControllerImp> {
   const ListItemsHome({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +20,22 @@ class ListItemsHome extends GetView<HomeControllerImp> {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Items(
-                ontap: () {
-                  
-                },
                 itemsModel: ItemsModel.fromJson(controller.items[index]));
           }),
     );
   }
 }
 
-class Items extends StatelessWidget {
+class Items extends  GetView<HomeControllerImp> {
   final ItemsModel itemsModel;
-  final void Function() ontap;
-  const Items({super.key, required this.itemsModel, required this.ontap});
+  const Items({super.key, required this.itemsModel,});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ontap,
+      onTap: (){
+        controller.goToItemsDetailsScreen(itemsModel);
+      },
       child: Container(
         width: 180,
         margin: const EdgeInsets.all(10),

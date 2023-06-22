@@ -11,7 +11,7 @@ class MyBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeScreenControllerImp>(builder: (controller) {
       return BottomAppBar(
-        elevation: 0,
+        //elevation: 0,
         clipBehavior: Clip.antiAlias,
         shape: const CircularNotchedRectangle(),
         notchMargin: 8,

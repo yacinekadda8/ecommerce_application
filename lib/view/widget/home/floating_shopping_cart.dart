@@ -6,14 +6,16 @@ class FlotingShoppingCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  FloatingActionButton(
-                  clipBehavior: Clip.antiAlias,
-                  elevation: 0,
-                  backgroundColor: AppColor.silverGreen,
-                  onPressed: () {},
-                  child: const Icon(
-                    Icons.shopping_cart,
-                    color: AppColor.backgroundcolor,
-                  ));
+    return FloatingActionButton(
+        clipBehavior: Clip.antiAlias,
+        elevation: 0,
+        backgroundColor: AppColor.silverGreen,
+        onPressed: () {
+          //Get.toNamed();
+        },
+        child: const Icon(
+          Icons.shopping_cart,
+          color: AppColor.backgroundcolor,
+        ));
   }
 }

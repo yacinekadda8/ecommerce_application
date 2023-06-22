@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../controller/homepage_controller.dart';
 
-
 class CustomCardHome extends GetView<HomeControllerImp> {
   final String title;
   final String subtitle;
@@ -25,31 +24,30 @@ class CustomCardHome extends GetView<HomeControllerImp> {
           title: Text(title,
               style: const TextStyle(
                 color: AppColor.backgroundcolor,
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               )),
           subtitle: Text(subtitle,
               style: const TextStyle(
                 color: AppColor.white,
-                fontSize: 36,
+                fontSize: 28,
                 fontWeight: FontWeight.normal,
               )),
         ),
       ),
-      
-          Positioned(
-            top: -24,
-            right: controller.lang == "en" ?  -28 : null ,
-            left: controller.lang == "ar" ?  -28 : null ,
-            child: Container(
-              height: 140,
-              width: 140,
-              decoration: BoxDecoration(
-                color: AppColor.silverGreen,
-                borderRadius: BorderRadius.circular(160),
-              ),
-            ),
+      Positioned(
+        top: -32,
+        right: controller.lang == "en" ? -30 : null,
+        left: controller.lang == "ar" ? -30 : null,
+        child: Container(
+          height: 110,
+          width: 110,
+          decoration: BoxDecoration(
+            color: AppColor.silverGreen,
+            borderRadius: BorderRadius.circular(160),
           ),
+        ),
+      ),
     ]);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/view/screen/home.dart';
+import 'package:ecommerce_application/view/screen/offers.dart';
 import 'package:ecommerce_application/view/screen/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,28 +12,22 @@ class HomeScreenControllerImp extends HomeScreenController {
   int currentpage = 0;
   List<Widget> listPage = [
     const HomePage(),
+    const Offers(),
     const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
-          child: Text('Profile'),
+          child: Text('Notification'),
         )
       ],
     ),
-    const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Text('Favorite'),
-        )
-      ],
-    ),
+
     const MySettings(),
   ];
 
   List iconBottomAppBar = [
-    Icons.home_filled,
-    Icons.person,
+    Icons.local_mall,
+    Icons.monetization_on,
     Icons.notifications,
     Icons.settings,
   ];

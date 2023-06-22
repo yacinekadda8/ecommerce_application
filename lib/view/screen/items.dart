@@ -28,7 +28,7 @@ class Items extends StatelessWidget {
      Scaffold(
       backgroundColor: AppColor.backgroundcolor,
       body: Container(
-          height: Get.height,
+          height: myHeight,
           padding: const EdgeInsets.all(8),
           child: ListView(children: [
     

@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     Get.put(HomeScreenControllerImp());
     return GetBuilder<HomeScreenControllerImp>(
         builder: (controller) => Scaffold(
+              extendBody: true,
               backgroundColor: AppColor.backgroundcolor,
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
