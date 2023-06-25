@@ -9,15 +9,14 @@ class ItemImage extends GetView<ItemDetailsControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    return  Hero(
-                    tag: "${controller.itemsModel.itemsId}",
-                    child: CachedNetworkImage(
+    return /* Hero(tag: "${controller.itemsModel.itemsId}",
+                    child: */ CachedNetworkImage(
                       imageUrl:
                           "${AppLink.imageItems}/${controller.itemsModel.itemsImage}",
                       height: 280,
                       width: 480,
                       fit: BoxFit.fitHeight,
-                    ),
+                    
                   );
   }
 }

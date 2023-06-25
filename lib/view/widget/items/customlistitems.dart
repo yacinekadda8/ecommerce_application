@@ -41,13 +41,13 @@ class CustomListItem extends GetView<ItemsControllerImp> {
               ),
               width: Get.width,
               height: Get.height / 5.5,
-              child: Hero(
+              child: /* Hero(
                   tag: "${itemsModel.itemsId}",
-                  child: CachedNetworkImage(
+                  child: */ CachedNetworkImage(
                     imageUrl: "${AppLink.imageItems}/${itemsModel.itemsImage}",
                     alignment: Alignment.center,
                     fit: BoxFit.contain,
-                  )),
+                  ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),

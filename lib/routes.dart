@@ -20,12 +20,12 @@ import 'view/screen/myfavorites.dart';
 
 List<GetPage<dynamic>>? routes = [
   //GetPage(name: "/", page: () => const ItemDetails()),
- /*  GetPage(
+ GetPage(
     name: "/",
     page: () => const Language(),
     middlewares: [MyMiddleWare()],
-  ), */
-   GetPage(name: "/", page: () => const Cart()),
+  ), 
+   //GetPage(name: "/", page: () => const Cart()),
 //  Auth
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),

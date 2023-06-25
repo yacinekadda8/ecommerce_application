@@ -44,13 +44,13 @@ class ListFavoriteItems extends GetView<FavoritesViewController> {
               ),
               width: Get.width / 2.8,
               height: Get.height,
-              child: Hero(
+              child:/* Hero(
                   tag: "${itemsModel.itemsId}",
-                  child: CachedNetworkImage(
+                  child:*/ CachedNetworkImage(
                     imageUrl: "${AppLink.imageItems}/${itemsModel.itemsImage}",
                     alignment: Alignment.center,
                     fit: BoxFit.fitWidth,
-                  )),
+                  ),
             ),
             Container(
               alignment: Alignment.topLeft,

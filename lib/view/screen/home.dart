@@ -128,14 +128,14 @@ class SearchList extends GetView<HomeControllerImp> {
                   ),
                   width: Get.width / 2.8,
                   height: Get.height,
-                  child: Hero(
+                  child: /* Hero(
                       tag: "${listSearchDataModel[index].itemsId}",
-                      child: CachedNetworkImage(
+                      child:*/ CachedNetworkImage(
                         imageUrl:
                             "${AppLink.imageItems}/${listSearchDataModel[index].itemsImage}",
                         alignment: Alignment.center,
                         fit: BoxFit.fitHeight,
-                      )),
+                      ),
                 ),
                 Container(
                   alignment: Alignment.topLeft,
