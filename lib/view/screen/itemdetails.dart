@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/controller/itemdetails_controller.dart';
+import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/view/widget/itemsdetails/item_name.dart';
 import 'package:flutter/material.dart';
@@ -17,62 +18,55 @@ class ItemDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ItemDetailsControllerImp());
+    ItemDetailsControllerImp itemDetailsControllerImp =
+        Get.put(ItemDetailsControllerImp());
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        color: AppColor.backgroundcolor,
-        child: ListView(
-          children: [
-/*
-            CustomAppBar(
-                    textSearchController: controller.textSearchController!,
-                    onChanged: (value) {
-                      //value = controller.textSearchController.text;
-                      controller.checkSearch(value);
-                    },
-                    hintText: "search",
-                    icon: Icons.notifications_outlined,
-                    //onPressedNotifIcon: () {},
-                    onPressedFavoriteIcon: () {
-                      controller.goToMyfavorites(
-                        ItemsModel(),
-                      );
-                    },
-                    onPressedSearch: () {
-                      controller.onSearchItems();
-                    },
-                  ), */
-            Container(
-              height: Get.height / 2.5,
-              color: AppColor.white,
-              child: Stack(
-                children: [
-                  const ItemImage(),
-                  FavorateIcon(onPressed: () {}),
-                ],
-              ),
+        body: GetBuilder<ItemDetailsControllerImp>(
+      builder: (controller) => HandlingDataView(
+          statusRequest: itemDetailsControllerImp.statusRequest,
+          widget: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            color: AppColor.backgroundcolor,
+            child: ListView(
+              children: [
+                Container(
+                    height: Get.height / 2.5,
+                    color: AppColor.white,
+                    child: const ItemImage() //FavorateIcon(onPressed: () {}),
+                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    textDirection: TextDirection.ltr,
+                    children: [
+                      const ItemName(),
+                      const PriceAndDiscount(),
+                      const DetailsDiscriotion(),
+                      // SubItemsList(),
+                      const SizedBox(height: 20),
+                      Quantity(
+                        quantity: "${itemDetailsControllerImp.itemsCount}",
+                        onAddTap: () {
+                          itemDetailsControllerImp.addCount();
+                        },
+                        onRemoveTap: () {
+                          itemDetailsControllerImp.removeCount();
+                        },
+                      ),
+                      BuyAndAddToCard(
+                        addCart: () {
+                          itemDetailsControllerImp.cartController.add(
+                              itemDetailsControllerImp.itemsModel.itemsId!);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                textDirection: TextDirection.ltr,
-                children: [
-                  ItemName(),
-                  PriceAndDiscount(),
-                  DetailsDiscriotion(),
-                  // SubItemsList(),
-                  SizedBox(height: 20),
-                  Quantity(),
-                  BuyAndAddToCard(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          )),
+    ));
   }
 }

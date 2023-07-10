@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import '../../../core/constant/color.dart';
 
 class BuyAndAddToCard extends StatelessWidget {
-  const BuyAndAddToCard({super.key});
+  final void Function()? addCart;
+  const BuyAndAddToCard({
+    Key? key,
+    this.addCart,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class BuyAndAddToCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-              onPressed: () {},
+              onPressed: addCart,
               icon: const Icon(
                 Icons.add_shopping_cart,
                 color: AppColor.primaryblueColor,
