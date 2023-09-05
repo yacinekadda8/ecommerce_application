@@ -50,7 +50,7 @@ class ItemsControllerImp extends ItemsController {
     statusRequest = StatusRequest.loading;
     var response = await itemsData.getData(
         categoryid, myServices.sharedPreferences.getString("id")!);
-    //print("=============================== Controller $response ");
+    print("=*=*=*= items: $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

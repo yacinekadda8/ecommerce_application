@@ -18,10 +18,16 @@ class Myfavorites extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColor.backgroundcolor,
         appBar: AppBar(
+          title: const Text(
+            "My Favorites",
+            style: TextStyle(
+              fontSize: 34,
+              fontWeight: FontWeight.bold,
+              color: AppColor.silverGreen,
+            ),
+          ),
           actionsIconTheme: const IconThemeData(color: AppColor.silverGreen),
-          elevation: 0,
           iconTheme: const IconThemeData(color: AppColor.silverGreen),
-          backgroundColor: AppColor.backgroundcolor,
           actions: const [CustomNotificationBtn()],
         ),
         body: GetBuilder<FavoritesViewController>(
@@ -29,17 +35,6 @@ class Myfavorites extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text(
-                          "MY favorites",
-                          style: TextStyle(
-                            fontSize: 44,
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.silverGreen,
-                          ),
-                        ),
-                      ),
                       HandlingDataView(
                           statusRequest: controller.statusRequest,
                           widget: ListView.builder(

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:ecommerce_application/core/class/statusrequest.dart';
 import 'package:ecommerce_application/core/constant/routes.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
@@ -8,7 +10,7 @@ import 'package:get/get.dart';
 
 import '../data/model/itemsmodel.dart';
 
-abstract class HomepageController extends GetxController {
+abstract class HomeController extends GetxController {
   initialdata();
   getData();
   goToItems(List catrgories, int selectedCat, String categoryid);
@@ -54,13 +56,13 @@ class HomeControllerImp extends SearchMixController {
   getData() async {
     statusRequest = StatusRequest.loading;
     var response = await homeData.getData();
-    //print("=============================== Controller $response ");
+    print("response:  $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        categories.addAll(response['categories']);
-        items.addAll(response['items']);
-        settingsData.addAll(response['settings']);
+        categories.addAll(response['categories']['data']);
+        items.addAll(response['items']['data']);
+        settingsData.addAll(response['settings']['data']);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -93,20 +95,22 @@ class SearchMixController extends GetxController {
   List<ItemsModel> listSearchDataModel = [];
 
   search() async {
-    statusRequest = StatusRequest.loading;
-    var response = await homeData.searchData(textSearchController!.text);
-    statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        listSearchDataModel.clear();
-        List responseData = response['data'];
-        listSearchDataModel
-            .addAll(responseData.map((e) => ItemsModel.fromJson(e)));
-      } else {
-        statusRequest = StatusRequest.failure;
+    if (textSearchController!.text.isNotEmpty) {
+      statusRequest = StatusRequest.loading;
+      var response = await homeData.searchData(textSearchController!.text);
+      statusRequest = handlingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          listSearchDataModel.clear();
+          List responseData = response['data'];
+          listSearchDataModel
+              .addAll(responseData.map((e) => ItemsModel.fromJson(e)));
+        } else {
+          statusRequest = StatusRequest.failure;
+        }
       }
+      update();
     }
-    update();
   }
 
   clearSearch() {

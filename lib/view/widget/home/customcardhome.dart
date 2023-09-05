@@ -2,7 +2,7 @@ import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/homepage_controller.dart';
+import '../../../controller/home_controller.dart';
 
 class CustomCardHome extends GetView<HomeControllerImp> {
   final String title;

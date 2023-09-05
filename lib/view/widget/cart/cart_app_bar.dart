@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartAppBAr extends StatelessWidget {
   const CartAppBAr({super.key});
@@ -7,23 +8,26 @@ class CartAppBAr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-              child: Container(
-            alignment: Alignment.center,
-            child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  size: 24,
-                  color: AppColor.primaryblueColor,
-                )),
-          )),
-          Expanded(
-            child: Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: IconButton(
+                  onPressed: () {
+                    Get.back();
+                    //Get.offAndToNamed(AppRoute.itemdetails);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    size: 24,
+                    color: AppColor.primaryblueColor,
+                  )),
+            ),
+            Container(
               alignment: Alignment.center,
               child: const Text(
                 'MY CART',
@@ -36,9 +40,9 @@ class CartAppBAr extends StatelessWidget {
                     color: AppColor.primaryblueColor),
               ),
             ),
-          ),
-          const SizedBox(width: 100)
-        ],
+            const SizedBox(width: 100)
+          ],
+        ),
       ),
     );
   }

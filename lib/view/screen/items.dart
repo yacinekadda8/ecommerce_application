@@ -7,7 +7,7 @@ import 'package:ecommerce_application/view/screen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/homepage_controller.dart';
+import '../../controller/home_controller.dart';
 import '../../controller/items_controller.dart';
 import '../../data/model/itemsmodel.dart';
 import '../widget/customappbar.dart';

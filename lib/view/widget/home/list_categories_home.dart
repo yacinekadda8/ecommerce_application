@@ -1,4 +1,4 @@
-import 'package:ecommerce_application/controller/homepage_controller.dart';
+import 'package:ecommerce_application/controller/home_controller.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/core/functions/translate_database.dart';
 import 'package:ecommerce_application/data/model/categoriesmodel.dart';

@@ -13,6 +13,8 @@ class SettingsController extends GetxController {
     Get.offAllNamed(AppRoute.login);
   }
 
+  //myServices.sharedPreferences.getString("id");
+
   contactUs() async {
     await launchUrl(Uri.parse("tel:+213790704851"));
   }

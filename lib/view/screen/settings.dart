@@ -1,6 +1,7 @@
 import 'package:ecommerce_application/controller/setting_controller.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/core/constant/imgaeasset.dart';
+import 'package:ecommerce_application/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -104,9 +105,7 @@ class MySettings extends StatelessWidget {
               color: AppColor.backgroundcolor,
               child: Column(children: [
                 ListTile(
-                  onTap: () {
-                    
-                  },
+                  onTap: () {},
                   title: const Text("Notification",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -120,15 +119,18 @@ class MySettings extends StatelessWidget {
                   iconColor: AppColor.white,
                   textColor: AppColor.white,
                 ),
-                const ListTile(
+                ListTile(
+                  onTap: () {
+                    Get.toNamed(AppRoute.addressView);
+                  },
                   tileColor: AppColor.backgroundcolor,
                   iconColor: AppColor.white,
                   textColor: AppColor.white,
-                  title: Text("Adresse",
+                  title: const Text("Address",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  leading: Icon(Icons.location_on, color: Colors.red),
-                  trailing: Icon(Icons.keyboard_arrow_right),
+                  leading: const Icon(Icons.location_on, color: Colors.red),
+                  trailing: const Icon(Icons.keyboard_arrow_right),
                 ),
 
                 /* Divider(

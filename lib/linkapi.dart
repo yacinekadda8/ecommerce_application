@@ -1,7 +1,6 @@
 class AppLink {
-  static const String server = "http://192.168.1.67/ecommercecourse";
-  static const String imagestatic =
-      "http://192.168.1.67/ecommercecourse/upload";
+  static const String server = "http://192.168.1.5/ecommerce";
+  static const String imagestatic = "http://192.168.1.5/ecommerce/upload";
 
   // ================================= images ========================== //
 
@@ -44,4 +43,14 @@ class AppLink {
   static const String cartView = "$server/cart/view.php";
   static const String cartRemove = "$server/cart/remove.php";
   static const String itemsCardCount = "$server/cart/getitemscount.php";
+// ========================= coupon  ========================== //
+  static const String checkcoupon = "$server/coupon/checkcoupon.php";
+
+
+
+// ========================= Address  ========================== //
+static const String addressView = "$server/address/view.php";
+static const String addressAdd = "$server/address/add.php";
+static const String addressEdit = "$server/address/edit.php";
+static const String addressRemove = "$server/address/remove.php";
 }

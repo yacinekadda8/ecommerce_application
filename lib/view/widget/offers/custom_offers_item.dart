@@ -41,7 +41,7 @@ class CustomOfferItem extends GetView<OffersController> {
                 borderRadius: BorderRadius.circular(18),
               ),
               width: Get.width - 20,
-              height: Get.height / 7,
+              height: Get.height / 8,
               child: Hero(
                   tag: "${itemsModel.itemsId}",
                   child: CachedNetworkImage(

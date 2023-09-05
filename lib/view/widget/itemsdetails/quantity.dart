@@ -25,14 +25,15 @@ class Quantity extends StatelessWidget {
         const CustomTitle(
           title: "Quantity:",
         ),
-        SizedBox(width: Get.width / 5),
+        SizedBox(width: Get.width / 6),
         Row(
           children: [
             IconButton(
+                // plus
                 onPressed: onAddTap,
-                icon: const Icon(Icons.add, size: 40, color: AppColor.white)),
+                icon: const Icon(Icons.add, size: 34, color: AppColor.white)),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               width: 40,
               //color: AppColor.silverGreen,
               alignment: Alignment.center,
@@ -46,9 +47,10 @@ class Quantity extends StatelessWidget {
               ),
             ),
             IconButton(
+                // minus
                 onPressed: onRemoveTap,
                 icon:
-                    const Icon(Icons.remove, size: 40, color: AppColor.white)),
+                    const Icon(Icons.remove, size: 34, color: AppColor.white)),
           ],
         )
       ],
