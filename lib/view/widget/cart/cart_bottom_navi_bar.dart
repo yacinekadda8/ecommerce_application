@@ -44,8 +44,7 @@ class CartBtmNaviBar extends StatelessWidget {
           const SizedBox(height: 10),
           GetBuilder<CartController>(builder: (c) {
             return c.couponCode == null
-                ? Container(
-                    //color: Colors.amber,
+                ? SizedBox(
                     child: Row(
                       children: [
                         Expanded(

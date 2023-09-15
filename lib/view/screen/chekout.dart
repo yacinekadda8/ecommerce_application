@@ -1,261 +1,143 @@
+import 'package:dartz/dartz.dart';
+import 'package:ecommerce_application/controller/checkout_controller.dart';
+import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/view/widget/checkout/delivery_type.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../widget/cart/bottom_cart_btn.dart';
+import '../widget/checkout/ask_widget.dart';
+import '../widget/checkout/delivery_address_card.dart';
+import '../widget/checkout/payment_method.dart';
 
 class Checkout extends StatelessWidget {
   const Checkout({super.key});
 
   @override
   Widget build(BuildContext context) {
+    CheckoutController controller = Get.put(CheckoutController());
     return Scaffold(
       //backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Chekout'),
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: ListView(
-            children: [
-              const AskWidget(qstion: 'Choose Payment Method'),
-              Container(
-                height: 60,
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                    color: AppColor.primaryblueColor,
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                      width: 4,
-                      color: AppColor.silverGreen,
-                    )),
-                child: const Center(
-                  child: Text(
-                    'Credit Card',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 30,
-                      height: 1.2,
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.silverGreen,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                height: 60,
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                    color: AppColor.primaryblueColor,
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                      width: 2,
-                      color: AppColor.backgroundcolor,
-                    )),
-                child: const Center(
-                  child: Text(
-                    'Cash On Delivery',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 30,
-                      height: 1.2,
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.backgroundcolor,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const AskWidget(qstion: 'Choose Delivery Type'),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: GetBuilder<CheckoutController>(builder: (c) {
+        return HandlingDataView(
+          statusRequest: c.statusRequest,
+          widget: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: ListView(
                 children: [
-                  Container(
-                    height: Get.height / 5.2,
-                    width: Get.width / 3,
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryblueColor,
-                        border: Border.all(
-                          color: AppColor.silverGreen,
-                          width: 4,
-                        ),
-                        borderRadius: BorderRadius.circular(15)),
-                    child: const Column(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Icon(
-                            Icons.delivery_dining,
-                            color: AppColor.silverGreen,
-                            size: 70,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Delivery',
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 26,
-                              color: AppColor.silverGreen,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )
-                      ],
+                  const AskWidget(qstion: 'Choose Payment Method'),
+                  InkWell(
+                    onTap: () {
+                      c.chosePaymentMethod('card');
+                    },
+                    child: PaymentMethod(
+                      title: 'Credit Card',
+                      isActive: c.paymentMethod == "card" ? true : false,
                     ),
                   ),
-                  Container(
-                    height: Get.height / 5.2,
-                    width: Get.width / 3,
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryblueColor,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: const Column(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Icon(
-                            Icons.store,
-                            color: AppColor.backgroundcolor,
-                            size: 70,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Store',
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 26,
-                              color: AppColor.backgroundcolor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )
-                      ],
+                  InkWell(
+                    onTap: () {
+                      c.chosePaymentMethod('cash');
+                    },
+                    child: PaymentMethod(
+                      title: 'Cash On Delivery',
+                      isActive: c.paymentMethod == "cash" ? true : false,
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              const AskWidget(qstion: 'Choose The Address'),
-              const SizedBox(height: 10),
-              const AddressCard(color: AppColor.primaryblueColor),
-              const AddressCard(color: AppColor.grey),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class AddressCard extends StatelessWidget {
-  final Color color;
-  const AddressCard({super.key, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: AppColor.backgroundcolor,
-            border: Border.all(
-              color: color, // Border color
-              width: 2.0, // Border width
-            ),
-            borderRadius: BorderRadius.circular(14.0), // Border radius
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text('My Home',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.primaryblueColor)),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                  child: const Column(
+                  const AskWidget(qstion: 'Choose Delivery Type'),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'City: ',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.primaryblueColor),
-                          ),
-                          Text('Algeria Saida',
-                              style: TextStyle(
-                                  fontSize: 18, color: AppColor.silverGreen)),
-                        ],
+                      InkWell(
+                        onTap: () {
+                          c.choseDelivryType('store');
+                        },
+                        child: DeliveryType(
+                          title: 'Store',
+                          isActive: c.delivryType == 'store' ? true : false,
+                          icon: Icons.storefront_sharp,
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Street: ',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.primaryblueColor),
-                          ),
-                          Text('Lassas block 8 nmr 7',
-                              style: TextStyle(
-                                  fontSize: 18, color: AppColor.silverGreen)),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Phone: ',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.primaryblueColor),
-                          ),
-                          Text('0799704851',
-                              style: TextStyle(
-                                  fontSize: 18, color: AppColor.silverGreen)),
-                        ],
+                      InkWell(
+                        onTap: () {
+                          c.choseDelivryType('delivery');
+                        },
+                        child: DeliveryType(
+                          title: 'Delivery',
+                          isActive: c.delivryType == 'delivery' ? true : false,
+                          icon: Icons.delivery_dining,
+                        ),
                       ),
                     ],
                   ),
-                )
-              ],
+                  const SizedBox(height: 10),
+                  if (c.delivryType == 'delivery')
+                    SizedBox(
+                      width: 400,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const AskWidget(qstion: 'Choose Shipping Address'),
+                          const SizedBox(height: 10),
+                          ...List.generate(
+                              c.addressList.length,
+                              (index) => InkWell(
+                                    onTap: () {
+                                      c.choseShipingAddress(c
+                                          .addressList[index].addressId
+                                          .toString());
+                                    },
+                                    child: DeliveryAddressCard(
+                                      title: c.addressList[index].addressName
+                                          .toString(),
+                                      subtitle: c
+                                          .addressList[index].addressStreet
+                                          .toString(),
+                                      isActive: c.addressId ==
+                                              c.addressList[index].addressId
+                                                  .toString()
+                                          ? true
+                                          : false,
+                                    ),
+                                  ))
+                        ],
+                      ),
+                    )
+                ],
+              ),
             ),
           ),
+        );
+      }),
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+        decoration: BoxDecoration(
+          color: AppColor.primaryblueColor,
+          borderRadius: BorderRadius.circular(15),
         ),
-      ],
-    );
-  }
-}
-
-class AskWidget extends StatelessWidget {
-  final String qstion;
-  const AskWidget({super.key, required this.qstion});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      qstion,
-      style: const TextStyle(fontSize: 26, color: AppColor.silverGreen),
+        width: double.infinity,
+        child: MaterialButton(
+          //color: AppColor.silverGreen,
+          height: 50,
+          textColor: AppColor.backgroundcolor,
+          onPressed: () {},
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+          child: const Text("Checkout",
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 26,
+                fontFamily: "arial",
+              )),
+        ),
+      ),
     );
   }
 }

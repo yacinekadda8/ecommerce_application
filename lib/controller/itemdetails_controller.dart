@@ -92,7 +92,6 @@ class ItemDetailsControllerImp extends ItemDetailsController {
       if (response['status'] == "success") {
         int itemsCount = 0;
         itemsCount = response['data'];
-        // ignore: avoid_print
         print("================$itemsCount");
 
         return itemsCount;

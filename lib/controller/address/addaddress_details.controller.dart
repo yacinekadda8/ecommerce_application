@@ -1,6 +1,8 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+// ignore_for_file: avoid_print
+
 import 'package:ecommerce_application/core/constant/routes.dart';
 import 'package:ecommerce_application/core/services/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,8 +31,10 @@ class AddAddressDetailsController extends GetxController {
     phone = TextEditingController();
     lat = Get.arguments['lat'];
     long = Get.arguments['long'];
-    print('--- latitude: $lat');
-    print('--- longitude: $long');
+    if (kDebugMode) {
+      print('--- latitude: $lat');
+      print('--- longitude: $long');
+    }
   }
 
   addAdress() async {

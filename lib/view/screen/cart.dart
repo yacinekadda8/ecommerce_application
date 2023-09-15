@@ -2,7 +2,6 @@ import 'package:ecommerce_application/controller/cart_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/core/constant/routes.dart';
-import 'package:ecommerce_application/view/widget/cart/cart_app_bar.dart';
 import 'package:ecommerce_application/view/widget/cart/cart_bottom_navi_bar.dart';
 import 'package:ecommerce_application/view/widget/cart/cart_item.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +21,6 @@ class Cart extends StatelessWidget {
             'MY CART',
             maxLines: 1,
             textAlign: TextAlign.start,
-            /* style: TextStyle(
-                fontSize: 30,
-                height: 1.2,
-                fontWeight: FontWeight.bold,
-                color: AppColor.primaryblueColor),
-        */
           ),
           elevation: 0,
           iconTheme: const IconThemeData(
@@ -101,7 +94,7 @@ class Cart extends StatelessWidget {
             couponcontroller: cartController.couponController,
             total: cartController.getTotalPrice(),
             onOrderPressed: () {
-              Get.offNamed(AppRoute.checkout);
+              Get.toNamed(AppRoute.checkout);
             },
           );
         }));

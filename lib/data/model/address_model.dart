@@ -30,7 +30,7 @@ class AddressModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['address_id'] = addressId;
     data['address_usersid'] = addressUsersid;
     data['address_name'] = addressName;

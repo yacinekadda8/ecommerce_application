@@ -1,4 +1,3 @@
-import 'package:ecommerce_application/core/class/statusrequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +13,7 @@ class AddressView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AddressViewController controller = Get.put(AddressViewController());
+ Get.put(AddressViewController());
     return Scaffold(
       appBar: AppBar(
         title: const Text(
