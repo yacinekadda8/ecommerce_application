@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: controller.appTheme,
       initialBinding: InitialBindings(),
       // routes: routes,
-      getPages: routes,
+      getPages: routes, 
     );
   }
 }
