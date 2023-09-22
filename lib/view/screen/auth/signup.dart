@@ -18,15 +18,15 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(SignUpControllerImp());
     return Scaffold(
+      backgroundColor: AppColor.backgroundcolor,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColor.backgroundcolor,
         elevation: 0.0,
         title: Text('17'.tr,
             style: Theme.of(context)
                 .textTheme
                 .displayLarge!
-                .copyWith(color: AppColor.grey)),
+                .copyWith(color: AppColor.backgroundcolor)),
       ),
       body: WillPopScope(
           onWillPop: alertExitApp,
@@ -42,7 +42,7 @@ class SignUp extends StatelessWidget {
                       const SizedBox(height: 20),
                       CustomTextTitleAuth(text: "10".tr),
                       const SizedBox(height: 10),
-                      CustomTextBodyAuth(text: "24".tr),
+                      CustomTextBodyAuth(color: AppColor.grey, text: "24".tr),
                       const SizedBox(height: 15),
                       CustomTextFormAuth(
                         isNumber: false,

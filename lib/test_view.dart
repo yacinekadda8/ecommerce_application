@@ -13,7 +13,7 @@ class TestView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Title"),
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColor.primaryblueColor,
       ),
       body: GetBuilder<TestController>(builder: (controller) {
         return HandlingDataView(

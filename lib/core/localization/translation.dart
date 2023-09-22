@@ -43,7 +43,12 @@ class MyTranslation extends Translations {
           "35": "الكلمة الجديدة",
           "36": "تم اعادة تعيين كلمة المرور بنجاح",
           "37": "تهانينا",
-          "38": "تم التسجيل بنجاح"
+          "38": "تم التسجيل بنجاح",
+          "39": "استكشف الفئات",
+          "40": "العروض اليومية",
+          "41": "الأكثر رواجا",
+          "42": "عرض محدود",
+          "43": "استرداد النقود",
         },
         "en": {
           "1": "Choose Language",
@@ -87,7 +92,12 @@ class MyTranslation extends Translations {
           "35": "New Password",
           "36": "Password has been reset successfully",
           "37": "congratulations",
-          "38": "successfully registered"
+          "38": "successfully registered",
+          "39": "Explore the categoreis",
+          "40": "Daily Deals",
+          "41": "Popular products",
+          "42": "A limited offer",
+          "43": "cashback",
         }
       };
 }

@@ -15,6 +15,7 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ForgetPasswordControllerImp());
     return Scaffold(
+        backgroundColor: AppColor.backgroundcolor,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColor.backgroundcolor,
@@ -38,6 +39,7 @@ class ForgetPassword extends StatelessWidget {
                         CustomTextTitleAuth(text: "27".tr),
                         const SizedBox(height: 10),
                         CustomTextBodyAuth(
+                            color: AppColor.grey,
                             // please Enter Your Email Address To Recive A verification code
                             text: "29".tr),
                         const SizedBox(height: 15),

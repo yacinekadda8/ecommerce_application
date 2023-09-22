@@ -9,6 +9,19 @@ class AppRoute {
   static const String successResetpassword = "/successresetpassword";
   static const String checkemail = "/checkemail";
   static const String verfiyCodeSignUp = "/verfiycodesignup";
-  // Home 
+  // Home
   static const String homepage = "/homepage";
+  static const String items = "/items";
+  static const String itemdetails = "/itemdetails";
+  static const String myfavorites = "/myfavorites";
+  static const String cart = "/cart";
+  static const String settings = "/settings";
+  static const String offers = "/offers";
+  // Address
+  static const String addressView = "/addressview";
+  static const String addressAdd = "/addressadd";
+  static const String addressEdit = "/addressedit";
+  static const String addAddressDetails = "/addAddressDetails";
+  //Checkout
+  static const String checkout = "/checkout";
 }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomTextBodyAuth extends StatelessWidget {
   final String text;
-  const CustomTextBodyAuth({Key? key, required this.text}) : super(key: key);
+  final Color color;
+  const CustomTextBodyAuth({Key? key, required this.text,required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,11 @@ class CustomTextBodyAuth extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: TextStyle(
+          fontSize: 18,
+          color: color,
+          fontFamily: "sans",
+        ),
       ),
     );
   }

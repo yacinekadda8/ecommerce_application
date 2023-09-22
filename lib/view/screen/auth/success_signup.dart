@@ -12,31 +12,27 @@ class SuccessSignUp extends StatelessWidget {
     SuccessSignUpControllerImp controller =
         Get.put(SuccessSignUpControllerImp());
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColor.backgroundcolor,
-        elevation: 0.0,
-        title: Text('32'.tr,
-            style: Theme.of(context)
-                .textTheme
-                .displayLarge!
-                .copyWith(color: AppColor.grey)),
-      ),
+      backgroundColor: AppColor.backgroundcolor,
       body: Container(
-        padding: const EdgeInsets.all(15),
+        padding:
+            const EdgeInsets.only(top: 45, bottom: 45, left: 15, right: 15),
         child: Column(children: [
+          SizedBox(height: Get.height / 10),
           const Center(
               child: Icon(
             Icons.check_circle_outline,
             size: 200,
-            color: AppColor.primaryColor,
+            color: AppColor.primaryblueColor,
           )),
           Text("37".tr,
               style: Theme.of(context)
                   .textTheme
                   .displayLarge!
                   .copyWith(fontSize: 30)),
-          Text("38".tr),
+          Text(
+            "38".tr,
+            style: TextStyle(fontSize: 30, color: Colors.green[400]),
+          ),
           const Spacer(),
           SizedBox(
             width: double.infinity,

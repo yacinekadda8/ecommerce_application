@@ -1,140 +1,25 @@
+import 'package:ecommerce_application/controller/homescreen_controller.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
+import 'package:ecommerce_application/view/widget/home/floating_shopping_cart.dart';
+import 'package:ecommerce_application/view/widget/home/my_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        /* floatingActionButton: FloatingActionButton(
-            onPressed: () {}, child: const Icon(Icons.shopping_bag_outlined)),
-         */ //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomAppBar(
-          // shape: const CircularNotchedRectangle(),
-          // notchMargin: 10,
-          child: Container(
-            color: AppColor.grey,
-            height: 70,
-            child: Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 5,
-                  color: Colors.amber[700],
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(Icons.home,
-                            size: MediaQuery.of(context).size.width / 10),
-                        Text(
-                          'HOME',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width / 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 5,
-                  color: Colors.amber[700],
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(Icons.home,
-                            size: MediaQuery.of(context).size.width / 10),
-                        Text(
-                          'HOME',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width / 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 5,
-                  color: Colors.amber[700],
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(Icons.home,
-                            size: MediaQuery.of(context).size.width / 10),
-                        Text(
-                          'HOME',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width / 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 5,
-                  color: Colors.amber[700],
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(Icons.home,
-                            size: MediaQuery.of(context).size.width / 10),
-                        Text(
-                          'HOME',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width / 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 5,
-                  color: Colors.amber[700],
-                  child: MaterialButton(
-                    onPressed: () {},
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(Icons.home,
-                            size: MediaQuery.of(context).size.width / 10),
-                        Text(
-                          'HOME',
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width / 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                  child: Text(
-                'Home Screen',
-                style: TextStyle(fontSize: 40),
-              )),
-            ]));
+    Get.put(HomeScreenControllerImp());
+    return GetBuilder<HomeScreenControllerImp>(
+        builder: (controller) => Scaffold(
+              extendBody: true,
+              backgroundColor: AppColor.backgroundcolor,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButton: const FlotingShoppingCart(),
+              bottomNavigationBar: const MyBottomNavigationBar(),
+              body: controller.listPage.elementAt(controller.currentpage),
+            ));
   }
 }

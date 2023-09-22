@@ -16,7 +16,7 @@ class CustomButtonOnBoarding extends GetView<OnBoardingControllerImp> {
           onPressed: () {
             controller.next();
           },
-          color: AppColor.primaryColor,
+          color: AppColor.primaryblueColor,
           child: Text("8".tr)),
     );
   }
