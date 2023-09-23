@@ -43,14 +43,14 @@ class AppLink {
   static const String cartView = "$server/cart/view.php";
   static const String cartRemove = "$server/cart/remove.php";
   static const String itemsCardCount = "$server/cart/getitemscount.php";
+// ========================= Address  ========================== //
+  static const String addressView = "$server/address/view.php";
+  static const String addressAdd = "$server/address/add.php";
+  static const String addressEdit = "$server/address/edit.php";
+  static const String addressRemove = "$server/address/remove.php";
+
 // ========================= coupon  ========================== //
   static const String checkcoupon = "$server/coupon/checkcoupon.php";
-
-
-
-// ========================= Address  ========================== //
-static const String addressView = "$server/address/view.php";
-static const String addressAdd = "$server/address/add.php";
-static const String addressEdit = "$server/address/edit.php";
-static const String addressRemove = "$server/address/remove.php";
+// ========================= checkout  ========================== //
+  static const String checkout = "$server/orders/checkout.php";
 }

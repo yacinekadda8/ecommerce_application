@@ -6,7 +6,7 @@ class AddressData {
   AddressData(this.crud);
   getData(String usersid) async {
     var response = await crud.postData(AppLink.addressView, {
-      "usersid": usersid,
+      "usersid": usersid.toString(),
     });
     return response.fold((l) => l, (r) => r);
   }
@@ -14,7 +14,7 @@ class AddressData {
   addData(String usersid, String name, String city, String street, String lat,
       String long, String phone) async {
     var response = await crud.postData(AppLink.addressAdd, {
-      "usersid": usersid,
+      "usersid": usersid.toString(),
       "name": name,
       "city": city,
       "street": street,
@@ -25,8 +25,8 @@ class AddressData {
     return response.fold((l) => l, (r) => r);
   }
 
-  editData(String name, String city, String street, String lat,
-      String long, String phone) async {
+  editData(String name, String city, String street, String lat, String long,
+      String phone) async {
     var response = await crud.postData(AppLink.addressEdit, {
       "name": name,
       "city": city,
@@ -40,7 +40,7 @@ class AddressData {
 
   removeData(String addressid) async {
     var response = await crud.postData(AppLink.addressRemove, {
-      "addressid":addressid,
+      "addressid": addressid ,
     });
     return response.fold((l) => l, (r) => r);
   }

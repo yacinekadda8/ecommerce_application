@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
-import 'package:ecommerce_application/core/constant/routes.dart';
+import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/data/model/address_model.dart';
 
 import '../../controller/address/address_view_controller.dart';
@@ -31,7 +31,7 @@ class AddressView extends StatelessWidget {
                       addressModel: controller.addressList[index],
                       onLongPress: () {
                         controller.removeAddress(
-                            controller.addressList[index].addressId.toString());
+                            controller.addressList[index].addressId!);
                       },
                     );
                   }))),

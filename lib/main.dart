@@ -1,5 +1,5 @@
 import 'package:ecommerce_application/bindings/intialbindings.dart';
-import 'package:ecommerce_application/core/constant/app_routes.dart';
+import 'package:ecommerce_application/core/constant/routes.dart';
 import 'package:ecommerce_application/core/localization/translation.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/firebase_options.dart';

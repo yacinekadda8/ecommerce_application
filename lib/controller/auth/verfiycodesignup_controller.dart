@@ -1,5 +1,5 @@
 import 'package:ecommerce_application/core/class/statusrequest.dart';
-import 'package:ecommerce_application/core/constant/routes.dart';
+import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/data/datasource/remote/auth/verfiycodesignup.dart';
 import 'package:get/get.dart';

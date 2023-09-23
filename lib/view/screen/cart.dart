@@ -1,7 +1,6 @@
 import 'package:ecommerce_application/controller/cart_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
-import 'package:ecommerce_application/core/constant/routes.dart';
 import 'package:ecommerce_application/view/widget/cart/cart_bottom_navi_bar.dart';
 import 'package:ecommerce_application/view/widget/cart/cart_item.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +93,8 @@ class Cart extends StatelessWidget {
             couponcontroller: cartController.couponController,
             total: cartController.getTotalPrice(),
             onOrderPressed: () {
-              Get.toNamed(AppRoute.checkout);
+              //Get.toNamed(AppRoute.checkout);
+              cartController.goToCheckoutPage();
             },
           );
         }));

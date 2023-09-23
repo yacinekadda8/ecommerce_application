@@ -24,7 +24,7 @@ class ItemDetailsControllerImp extends ItemDetailsController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.addCart(
-        itemid, myServices.sharedPreferences.getString("id")!);
+        itemid, myServices.sharedPreferences.getInt("id")!);
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -55,7 +55,7 @@ class ItemDetailsControllerImp extends ItemDetailsController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.removeCart(
-        itemid, myServices.sharedPreferences.getString("id")!);
+        itemid, myServices.sharedPreferences.getInt("id")!);
     //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -85,7 +85,7 @@ class ItemDetailsControllerImp extends ItemDetailsController {
   getItemsCount(int itemid) async {
     statusRequest = StatusRequest.loading;
     var response = await cartData.itemsCardCount(
-        itemid, myServices.sharedPreferences.getString("id")!);
+        itemid, myServices.sharedPreferences.getInt("id")!);
     //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {

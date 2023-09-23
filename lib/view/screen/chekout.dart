@@ -1,12 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:ecommerce_application/controller/checkout_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/view/widget/checkout/delivery_type.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../widget/cart/bottom_cart_btn.dart';
 import '../widget/checkout/ask_widget.dart';
 import '../widget/checkout/delivery_address_card.dart';
 import '../widget/checkout/payment_method.dart';
@@ -33,20 +30,20 @@ class Checkout extends StatelessWidget {
                   const AskWidget(qstion: 'Choose Payment Method'),
                   InkWell(
                     onTap: () {
-                      c.chosePaymentMethod('card');
+                      c.chosePaymentMethod(val: 1); // 1 = card
                     },
                     child: PaymentMethod(
                       title: 'Credit Card',
-                      isActive: c.paymentMethod == "card" ? true : false,
+                      isActive: c.paymentMethod == 1 ? true : false,
                     ),
                   ),
                   InkWell(
                     onTap: () {
-                      c.chosePaymentMethod('cash');
+                      c.chosePaymentMethod(val: 0); // 0 = cash
                     },
                     child: PaymentMethod(
                       title: 'Cash On Delivery',
-                      isActive: c.paymentMethod == "cash" ? true : false,
+                      isActive: c.paymentMethod == 0 ? true : false,
                     ),
                   ),
                   const AskWidget(qstion: 'Choose Delivery Type'),
@@ -56,28 +53,28 @@ class Checkout extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          c.choseDelivryType('store');
+                          c.choseDelivryType(val: 1); // 1 = Store
                         },
                         child: DeliveryType(
                           title: 'Store',
-                          isActive: c.delivryType == 'store' ? true : false,
+                          isActive: c.deliveryType == 1 ? true : false,
                           icon: Icons.storefront_sharp,
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          c.choseDelivryType('delivery');
+                          c.choseDelivryType(val: 0); // 0 = Delivery
                         },
                         child: DeliveryType(
                           title: 'Delivery',
-                          isActive: c.delivryType == 'delivery' ? true : false,
+                          isActive: c.deliveryType == 0 ? true : false,
                           icon: Icons.delivery_dining,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 10),
-                  if (c.delivryType == 'delivery')
+                  if (c.deliveryType == 0)
                     SizedBox(
                       width: 400,
                       child: Column(
@@ -89,9 +86,8 @@ class Checkout extends StatelessWidget {
                               c.addressList.length,
                               (index) => InkWell(
                                     onTap: () {
-                                      c.choseShipingAddress(c
-                                          .addressList[index].addressId
-                                          .toString());
+                                      c.choseShipingAddress(val: 
+                                          c.addressList[index].addressId ?? 0);
                                     },
                                     child: DeliveryAddressCard(
                                       title: c.addressList[index].addressName
@@ -99,9 +95,8 @@ class Checkout extends StatelessWidget {
                                       subtitle: c
                                           .addressList[index].addressStreet
                                           .toString(),
-                                      isActive: c.addressId ==
+                                      isActive: c.addressid ==
                                               c.addressList[index].addressId
-                                                  .toString()
                                           ? true
                                           : false,
                                     ),
@@ -126,7 +121,9 @@ class Checkout extends StatelessWidget {
           //color: AppColor.silverGreen,
           height: 50,
           textColor: AppColor.backgroundcolor,
-          onPressed: () {},
+          onPressed: () {
+            controller.checkout();
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
           ),

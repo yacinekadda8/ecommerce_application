@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:ecommerce_application/core/constant/routes.dart';
+import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class AddAddressDetailsController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await adressData.addData(
-      myServices.sharedPreferences.getString("id")!,
+      myServices.sharedPreferences.getInt("id")!.toString(),
       name!.text,
       city!.text,
       street!.text,
