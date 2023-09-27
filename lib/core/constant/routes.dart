@@ -12,7 +12,7 @@ import 'package:ecommerce_application/view/screen/auth/success_signup.dart';
 import 'package:ecommerce_application/view/screen/auth/forgetpassword/verifycode.dart';
 import 'package:ecommerce_application/view/screen/auth/verifycodesignup.dart';
 import 'package:ecommerce_application/view/screen/cart.dart';
-import 'package:ecommerce_application/view/screen/chekout.dart';
+import 'package:ecommerce_application/view/screen/checkout.dart';
 import 'package:ecommerce_application/view/screen/homescreen.dart';
 import 'package:ecommerce_application/view/screen/itemdetails.dart';
 import 'package:ecommerce_application/view/screen/items.dart';

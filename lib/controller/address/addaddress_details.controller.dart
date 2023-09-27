@@ -71,6 +71,15 @@ class AddAddressDetailsController extends GetxController {
   }
 
   @override
+  void dispose() {
+    name?.dispose();
+    city?.dispose();
+    street?.dispose();
+    phone?.dispose();
+    super.dispose();
+  }
+
+  @override
   void onInit() {
     initialData();
     super.onInit();

@@ -19,7 +19,7 @@ class CheckoutController extends GetxController {
   int addressid = 0;
   late int couponid;
   late double priceorders;
-  //late String coupondiscount;
+  late String coupondiscount;
 
   getShippingAddress() async {
     statusRequest = StatusRequest.loading;
@@ -68,10 +68,10 @@ class CheckoutController extends GetxController {
       "usersid": myServices.sharedPreferences.getInt("id")!.toString(),
       "addressid": addressid.toString(),
       "orderstype": deliveryType.toString(),
-      "pricedelivery": 10.toString(),
+      "pricedelivery": "700".toString(),
       "ordersprice": priceorders.toString(),
       "couponid": couponid.toString(),
-      //"coupondiscount" : coupondiscount,
+      "coupondiscount": coupondiscount.toString(),
       "paymentmethod": paymentMethod.toString(),
     };
 
@@ -85,8 +85,12 @@ class CheckoutController extends GetxController {
       // Start backend
       if (response['status'] == "success") {
         Get.offAllNamed(AppRoute.homepage);
-        Get.snackbar("Success", "the order was successfully",
-            backgroundColor: AppColor.primaryblueColor);
+        Get.snackbar(
+          "Success",
+          "the order was successfully",
+          backgroundColor: AppColor.silverGreen,
+          colorText: AppColor.backgroundcolor,
+        );
       } else {
         statusRequest = StatusRequest.none;
         Get.snackbar("Error", "try again", backgroundColor: AppColor.red);
@@ -111,47 +115,11 @@ class CheckoutController extends GetxController {
     update();
   }
 
-  //   ----------- Test --------------- //
-/*
-   addAdress() async {
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await adressData.addData(
-      myServices.sharedPreferences.getInt("id")!,
-      name!.text,
-      city!.text,
-      street!.text,
-      lat!,
-      long!,
-      phone!.text,
-    );
-    print("=============================== Controller $response ");
-
-    statusRequest = handlingData(response);
-
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
-        Get.offAndToNamed(AppRoute.homepage);
-        
-        Get.rawSnackbar(
-          title: "GREAT",
-          message: "You can send to this Address now.",
-          borderRadius: 15,
-          margin: const EdgeInsets.all(15),
-          duration: const Duration(seconds: 6),
-        );
-      } else {
-        statusRequest = StatusRequest.failure;
-      }
-    }
-    update();
-  }
-*/
-
   @override
   void onInit() {
     couponid = Get.arguments['couponid'];
     priceorders = Get.arguments['priceorder'];
+    coupondiscount = Get.arguments['discountcoupon'].toString();
     getShippingAddress();
     super.onInit();
   }

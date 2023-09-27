@@ -126,7 +126,7 @@ class CartController extends GetxController {
     Get.toNamed(AppRoute.checkout, arguments: {
       "couponid": couponId ?? 0,
       "priceorder": priceorders,
-      "discountcoupon": discountCoupon
+      "discountcoupon": discountCoupon.toString(),
     });
   }
 
