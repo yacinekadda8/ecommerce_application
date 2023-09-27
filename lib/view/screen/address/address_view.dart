@@ -6,7 +6,7 @@ import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/data/model/address_model.dart';
 
-import '../../controller/address/address_view_controller.dart';
+import '../../../controller/address/address_view_controller.dart';
 
 class AddressView extends StatelessWidget {
   const AddressView({super.key});

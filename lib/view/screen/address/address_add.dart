@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../controller/address/addaddress_controller.dart';
-import '../../core/class/handlingdataview.dart';
-import '../widget/address/continue_btn.dart';
+import '../../../controller/address/addaddress_controller.dart';
+import '../../../core/class/handlingdataview.dart';
+import '../../widget/address/continue_btn.dart';
 
 class AddressAdd extends StatelessWidget {
   const AddressAdd({super.key});

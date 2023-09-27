@@ -99,6 +99,69 @@ class MySettings extends StatelessWidget {
               ))
             ],
           ),
+          Container(
+            color: AppColor.primaryblueColor,
+            height: 130,
+            padding: const EdgeInsets.only(left: 26.0, right: 26.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  "My orders",
+                  style: TextStyle(color: Colors.white, fontSize: 22),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed(AppRoute.orderspending);
+                      },
+                      child: const Column(
+                        children: [
+                          Icon(
+                            Icons.local_shipping,
+                            color: Colors.black,
+                            size: 40,
+                          ),
+                          Text(
+                            "Pending",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed(AppRoute.ordersarchive);
+                      },
+                      child: const Column(
+                        children: [
+                          Icon(
+                            Icons.fact_check,
+                            color: Colors.black,
+                            size: 40,
+                          ),
+                          Text(
+                            "Shipped",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 30.0),
             child: Card(

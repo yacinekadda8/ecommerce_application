@@ -4,8 +4,8 @@ import 'package:ecommerce_application/view/widget/auth/customtextformauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/address/addaddress_details.controller.dart';
-import '../widget/address/continue_btn.dart';
+import '../../../controller/address/addaddress_details.controller.dart';
+import '../../widget/address/continue_btn.dart';
 
 class AddAddressDetails extends StatelessWidget {
   const AddAddressDetails({super.key});
