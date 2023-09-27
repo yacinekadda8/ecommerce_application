@@ -7,6 +7,7 @@ import 'package:ecommerce_application/data/model/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../core/constant/approutes.dart';
 import '../data/model/coupon_model.dart';
 
 class CartController extends GetxController {
@@ -21,12 +22,13 @@ class CartController extends GetxController {
 
   int? discountCoupon = 0;
   String? couponCode;
+  int? couponId;
 
   add(int itemid) async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.addCart(
-        itemid, myServices.sharedPreferences.getString("id")!);
+        itemid, myServices.sharedPreferences.getInt("id")!);
     //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -56,7 +58,7 @@ class CartController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.removeCart(
-        itemid, myServices.sharedPreferences.getString("id")!);
+        itemid, myServices.sharedPreferences.getInt("id")!);
     //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -99,7 +101,7 @@ class CartController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response =
-        await cartData.viewCart(myServices.sharedPreferences.getString("id")!);
+        await cartData.viewCart(myServices.sharedPreferences.getInt("id")!);
     //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -119,6 +121,15 @@ class CartController extends GetxController {
     update();
   }
 
+  goToCheckoutPage() {
+    if (data.isEmpty) return Get.snackbar("تنبيه", "السله فارغه");
+    Get.toNamed(AppRoute.checkout, arguments: {
+      "couponid": couponId ?? 0,
+      "priceorder": priceorders,
+      "discountcoupon": discountCoupon
+    });
+  }
+
   getTotalPrice() {
     return priceorders - (priceorders * discountCoupon! / 100);
   }
@@ -135,6 +146,7 @@ class CartController extends GetxController {
         couponModel = CouponModel.fromJson(datacoupon);
         discountCoupon = couponModel!.couponDiscount!;
         couponCode = couponModel!.couponCode;
+        couponId = couponModel!.couponId;
         couponController.clear();
         Get.rawSnackbar(
           //title: "GREAT",
@@ -162,6 +174,7 @@ class CartController extends GetxController {
         statusRequest = StatusRequest.none;
         discountCoupon = 0;
         couponCode = null;
+        couponId = null;
         Get.rawSnackbar(
           titleText: const Text(
             'SADLY',

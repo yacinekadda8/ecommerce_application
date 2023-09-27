@@ -1,33 +1,35 @@
 import 'package:ecommerce_application/core/class/statusrequest.dart';
+import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/address_data.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../core/constant/routes.dart';
+import '../core/constant/approutes.dart';
+import '../data/datasource/remote/checkout_data.dart';
 import '../data/model/address_model.dart';
 
 class CheckoutController extends GetxController {
   AddressData addressData = Get.put(AddressData(Get.find()));
+  CheckoutData checkoutData = Get.put(CheckoutData(Get.find()));
   MyServices myServices = Get.find();
   List<AddressModel> addressList = [];
-
   StatusRequest statusRequest = StatusRequest.none;
-  String? paymentMethod;
-  String? delivryType;
-  String? addressId;
+  int? paymentMethod;
+  int? deliveryType;
+  int addressid = 0;
+  late int couponid;
+  late double priceorders;
+  //late String coupondiscount;
 
   getShippingAddress() async {
     statusRequest = StatusRequest.loading;
 
     var response = await addressData
-        .getData(myServices.sharedPreferences.getString('id')!);
+        .getData(myServices.sharedPreferences.getInt('id')!.toString());
 
     //print("=============================== Controller $response ");
 
     statusRequest = handlingData(response);
-
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         List data = response['data'];
@@ -40,29 +42,82 @@ class CheckoutController extends GetxController {
     update();
   }
 
-  chosePaymentMethod(String val) {
+  checkout() async {
+    if (paymentMethod == null) {
+      return Get.snackbar(
+        "Error",
+        "Please select a payment method",
+        backgroundColor: AppColor.itemsColor,
+        colorText: AppColor.red,
+      );
+    }
+    if (deliveryType == null) {
+      return Get.snackbar(
+        "Error",
+        "Please select a order Type",
+        backgroundColor: AppColor.itemsColor,
+        colorText: AppColor.red,
+      );
+    }
+
+    statusRequest = StatusRequest.loading;
+
+    update();
+
+    Map data = {
+      "usersid": myServices.sharedPreferences.getInt("id")!.toString(),
+      "addressid": addressid.toString(),
+      "orderstype": deliveryType.toString(),
+      "pricedelivery": 10.toString(),
+      "ordersprice": priceorders.toString(),
+      "couponid": couponid.toString(),
+      //"coupondiscount" : coupondiscount,
+      "paymentmethod": paymentMethod.toString(),
+    };
+
+    var response = await checkoutData.checkout(data: data);
+
+    print("=============================== Controller $response ");
+
+    statusRequest = handlingData(response);
+
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+        Get.offAllNamed(AppRoute.homepage);
+        Get.snackbar("Success", "the order was successfully",
+            backgroundColor: AppColor.primaryblueColor);
+      } else {
+        statusRequest = StatusRequest.none;
+        Get.snackbar("Error", "try again", backgroundColor: AppColor.red);
+      }
+      // End
+    }
+    update();
+  }
+
+  chosePaymentMethod({required int val}) {
     paymentMethod = val;
     update();
   }
 
-  choseDelivryType(String val) {
-    delivryType = val;
+  choseDelivryType({required int val}) {
+    deliveryType = val;
     update();
   }
 
-  choseShipingAddress(String val) {
-    addressId = val;
+  choseShipingAddress({required int val}) {
+    addressid = val;
     update();
   }
 
-
-  //   ----------- Test --------------- // 
+  //   ----------- Test --------------- //
 /*
    addAdress() async {
     statusRequest = StatusRequest.loading;
     update();
     var response = await adressData.addData(
-      myServices.sharedPreferences.getString("id")!,
+      myServices.sharedPreferences.getInt("id")!,
       name!.text,
       city!.text,
       street!.text,
@@ -93,13 +148,10 @@ class CheckoutController extends GetxController {
   }
 */
 
-
-
-
-
-
   @override
   void onInit() {
+    couponid = Get.arguments['couponid'];
+    priceorders = Get.arguments['priceorder'];
     getShippingAddress();
     super.onInit();
   }

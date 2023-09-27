@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:ecommerce_application/core/class/statusrequest.dart';
-import 'package:ecommerce_application/core/constant/routes.dart';
+import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/home_data.dart';
@@ -22,7 +22,7 @@ class HomeControllerImp extends SearchMixController {
   MyServices myServices = Get.find();
   //List<ItemsModel> listSearchDataModel = [];
   String? username;
-  String? id;
+  int? id;
   String? lang;
   //TextEditingController? textSearchController;
   //bool isSearch = false;
@@ -49,7 +49,7 @@ class HomeControllerImp extends SearchMixController {
 
   void initialdata() {
     username = myServices.sharedPreferences.getString("username");
-    id = myServices.sharedPreferences.getString("id");
+    id = myServices.sharedPreferences.getInt("id");
     lang = myServices.sharedPreferences.getString("lang");
   }
 

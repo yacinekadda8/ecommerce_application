@@ -1,7 +1,7 @@
 import 'package:ecommerce_application/controller/setting_controller.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/core/constant/imgaeasset.dart';
-import 'package:ecommerce_application/core/constant/routes.dart';
+import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -61,16 +61,16 @@ class MySettings extends StatelessWidget {
                           width: Get.width / 1.7,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           //color: Colors.yellow,
-                          child: const Column(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                'Merahi Yacine',
+                                controller.username ?? 'Unkown',
                                 textAlign: TextAlign.start,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 28,
                                     color: AppColor.white,
                                     fontFamily: "sans",
@@ -78,11 +78,11 @@ class MySettings extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                'Yacine.mrh7@gmail.com',
+                                controller.userId ?? 'Unkown',
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 textAlign: TextAlign.start,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 18,
                                     color: AppColor.backgroundcolor,
                                     fontFamily: "sans",

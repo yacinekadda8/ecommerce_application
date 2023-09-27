@@ -21,7 +21,7 @@ class AddressViewController extends GetxController {
     statusRequest = StatusRequest.loading;
 
     var response = await addressData
-        .getData(myServices.sharedPreferences.getString('id')!);
+        .getData(myServices.sharedPreferences.getInt('id')!.toString());
 
     print("=============================== Controller $response ");
 
@@ -42,7 +42,7 @@ class AddressViewController extends GetxController {
     update();
   }
 
-  removeAddress(String addressId) {
+  removeAddress(int addressId) {
     Get.defaultDialog(
       title: 'Remove the Address',
       textCancel: 'Cancel',
@@ -52,9 +52,9 @@ class AddressViewController extends GetxController {
       },
       textConfirm: "Yes",
       onConfirm: () {
-        addressData.removeData(addressId);
+        addressData.removeData(addressId.toString());
         addressList.removeWhere(
-            (element) => element.addressId == int.parse(addressId));
+            (element) => element.addressId == addressId);
         update();
         Get.back();
       },

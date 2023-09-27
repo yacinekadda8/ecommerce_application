@@ -1,7 +1,7 @@
 import 'package:ecommerce_application/controller/itemdetails_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
 import 'package:ecommerce_application/core/constant/color.dart';
-import 'package:ecommerce_application/core/constant/routes.dart';
+import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/view/widget/itemsdetails/item_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/favorite_controller.dart';
-import '../../core/constant/routes.dart';
+import '../../core/constant/approutes.dart';
 
 class Offers extends StatelessWidget {
   const Offers({super.key});
