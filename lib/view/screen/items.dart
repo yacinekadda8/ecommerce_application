@@ -69,7 +69,7 @@ class Items extends StatelessWidget {
                                                 crossAxisSpacing: 4,
                                                 mainAxisSpacing: 4,
                                                 childAspectRatio: (Get.width) /
-                                                    (myHeight / 1.2),
+                                                    (myHeight / 1.4),
                                               ),
                                               itemCount: controller.data.length,
                                               scrollDirection: Axis.vertical,

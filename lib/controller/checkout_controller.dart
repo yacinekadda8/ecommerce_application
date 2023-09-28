@@ -3,6 +3,7 @@ import 'package:ecommerce_application/core/constant/color.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/address_data.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:get/get.dart';
 import '../core/constant/approutes.dart';
 import '../data/datasource/remote/checkout_data.dart';
@@ -85,10 +86,11 @@ class CheckoutController extends GetxController {
       // Start backend
       if (response['status'] == "success") {
         Get.offAllNamed(AppRoute.homepage);
+        FlutterRingtonePlayer.playNotification();
         Get.snackbar(
           "Success",
           "the order was successfully",
-          backgroundColor: AppColor.silverGreen,
+          backgroundColor: AppColor.red,
           colorText: AppColor.backgroundcolor,
         );
       } else {
