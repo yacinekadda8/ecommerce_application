@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/core/class/statusrequest.dart';
 import 'package:ecommerce_application/data/model/itemsmodel.dart';
@@ -24,8 +24,8 @@ class ItemDetailsControllerImp extends ItemDetailsController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.addCart(
-        itemid, myServices.sharedPreferences.getInt("id")!);
-    print("=============================== Controller $response ");
+        itemid, myServices.sharedPreferences.getString("id")!);
+    //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -55,8 +55,8 @@ class ItemDetailsControllerImp extends ItemDetailsController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.removeCart(
-        itemid, myServices.sharedPreferences.getInt("id")!);
-    //print("=============================== Controller $response ");
+        itemid, myServices.sharedPreferences.getString("id")!);
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -85,14 +85,14 @@ class ItemDetailsControllerImp extends ItemDetailsController {
   getItemsCount(int itemid) async {
     statusRequest = StatusRequest.loading;
     var response = await cartData.itemsCardCount(
-        itemid, myServices.sharedPreferences.getInt("id")!);
-    //print("=============================== Controller $response ");
+        itemid, myServices.sharedPreferences.getString("id")!);
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         int itemsCount = 0;
         itemsCount = response['data'];
-        print("================$itemsCount");
+        //print("================$itemsCount");
 
         return itemsCount;
       } else {

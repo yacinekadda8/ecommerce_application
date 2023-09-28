@@ -25,9 +25,9 @@ class CheckoutController extends GetxController {
     statusRequest = StatusRequest.loading;
 
     var response = await addressData
-        .getData(myServices.sharedPreferences.getInt('id')!.toString());
+        .getData(myServices.sharedPreferences.getString('id')!.toString());
 
-    //print("=============================== Controller $response ");
+    ////print("=============================== Controller $response ");
 
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
@@ -65,7 +65,7 @@ class CheckoutController extends GetxController {
     update();
 
     Map data = {
-      "usersid": myServices.sharedPreferences.getInt("id")!.toString(),
+      "usersid": myServices.sharedPreferences.getString("id")!.toString(),
       "addressid": addressid.toString(),
       "orderstype": deliveryType.toString(),
       "pricedelivery": "700".toString(),
@@ -77,7 +77,7 @@ class CheckoutController extends GetxController {
 
     var response = await checkoutData.checkout(data: data);
 
-    print("=============================== Controller $response ");
+    //print("=============================== Controller $response ");
 
     statusRequest = handlingData(response);
 

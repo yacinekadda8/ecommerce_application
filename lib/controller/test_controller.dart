@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/core/class/statusrequest.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
@@ -17,7 +17,7 @@ class TestController extends GetxController {
 
     var response = await testData.getData();
 
-    //print("=============================== Controller $response ");
+    ////print("=============================== Controller $response ");
 
     statusRequest = handlingData(response);
 
@@ -28,7 +28,7 @@ class TestController extends GetxController {
         statusRequest = StatusRequest.failure;
       }
     }
-    
+
     update();
   }
 

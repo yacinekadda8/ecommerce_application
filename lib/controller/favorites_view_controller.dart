@@ -22,17 +22,17 @@ class FavoritesViewController extends GetxController {
     data.clear();
     statusRequest = StatusRequest.loading;
     var response = await favoritesViewData
-        .getViewData(myServices.sharedPreferences.getInt("id")!.toString());
+        .getViewData(myServices.sharedPreferences.getString("id")!.toString());
 
-    //print("=============================== Controller $response ");
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         List responsedata = response['data'];
 
         data.addAll(responsedata.map((e) => MyFavoriteModel.fromJson(e)));
-        // print("data");
-        // print(data);
+        // //print("data");
+        // //print(data);
       } else {
         statusRequest = StatusRequest.failure;
       }

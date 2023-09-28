@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../controller/orders/pending_controller.dart';
@@ -15,6 +15,7 @@ class CardOrdersList extends GetView<OrdersPendingController> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColor.itemsColor,
       child: Container(
           padding: const EdgeInsets.all(10),
           child: Column(
@@ -22,9 +23,17 @@ class CardOrdersList extends GetView<OrdersPendingController> {
             children: [
               Row(
                 children: [
-                  Text("Order Number : #${listdata.ordersId}",
+                  const Text("Order Number: ",
+                      style: TextStyle(
+                          color: AppColor.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold)),
+                  Text("${listdata.ordersId}",
                       style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold)),
+                          color: AppColor.silverGreen,
+                          fontSize: 22,
+                          height: 1.4,
+                          fontWeight: FontWeight.bold)),
                   const Spacer(),
                   // Text(listdata.ordersDatetime!)
                   Text(
@@ -35,43 +44,65 @@ class CardOrdersList extends GetView<OrdersPendingController> {
                   )
                 ],
               ),
-              Divider(),
+              const Divider(),
               Text(
-                  "Order Type : ${controller.printOrderType(listdata.ordersType!)}"),
+                  "Order Type : ${controller.printOrderType(listdata.ordersDeliverytype!.toString())}"),
               Text("Order Price : ${listdata.ordersPrice} \$"),
               Text("Delivery Price : ${listdata.ordersPricedelivery} \$ "),
               Text(
-                  "Payment Method : ${controller.printPaymentMethod(listdata.ordersPaymentmethod!)} "),
+                  "Payment Method : ${controller.printPaymentMethod(listdata.ordersPaymentmethod!.toString())} "),
               Text(
-                  "Order Status : ${controller.printOrderStatus(listdata.ordersStatus!)} "),
+                  "Order Status : ${controller.printOrderStatus(listdata.ordersStatus!.toString())} "),
               const Divider(),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Total Price : ${listdata.ordersId} \$ ",
-                      style: const TextStyle(
-                          color: AppColor.primaryblueColor,
+                  const Text("Total Price:  ",
+                      style: TextStyle(
+                          color: AppColor.white,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold)),
+                  Text(
+                      NumberFormat.currency(locale: 'ar_DZ', decimalDigits: 2)
+                          .format(listdata.ordersTotalPrice),
+                      style: const TextStyle(
+                          color: AppColor.silverGreen,
+                          fontSize: 22,
+                          fontFamily: "arial",
+                          // height: 1.5,
+                          fontWeight: FontWeight.bold)),
+                  const Spacer(),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   const Spacer(),
                   MaterialButton(
                     onPressed: () {
                       Get.toNamed(AppRoute.ordersdetails,
                           arguments: {"ordersmodel": listdata});
                     },
-                    color: AppColor.red,
-                    textColor: AppColor.silverGreen,
-                    child: const Text("Details"),
+                    color: AppColor.primaryblueColor,
+                    textColor: AppColor.black,
+                    child: const Text("Details",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
-                  SizedBox(width: 10),
-                 if (listdata.ordersStatus! == "0") MaterialButton(
-                    onPressed: () {
-                      controller.deleteOrder(listdata.ordersId!);
-                    },
-                    color: AppColor.red,
-                    textColor: AppColor.silverGreen,
-                    child: const Text("Delete"),
-                  )
+                  const SizedBox(width: 10),
+                  if (listdata.ordersStatus! == 0)
+                    MaterialButton(
+                      onPressed: () {
+                        controller.deleteOrder(listdata.ordersId!.toString());
+                      },
+                      color: AppColor.red,
+                      textColor: AppColor.black,
+                      child: const Text("Remove",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    )
                 ],
-              ),
+              )
             ],
           )),
     );

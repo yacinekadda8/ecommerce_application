@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:ecommerce_application/core/functions/checkinternet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -17,7 +15,7 @@ class _TestState extends State<Test> {
 
   intialdata() async {
     res = await checkInternet();
-    print(res);
+    //print(res);
   }
 
   @override

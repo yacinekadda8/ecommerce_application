@@ -7,7 +7,6 @@ import '../../data/datasource/remote/orders/pending_data.dart';
 import '../../data/model/orders_model.dart';
 
 class OrdersPendingController extends GetxController {
-  
   OrdersPendingData ordersPendingData = OrdersPendingData(Get.find());
 
   List<OrdersModel> data = [];
@@ -39,19 +38,20 @@ class OrdersPendingController extends GetxController {
       return "The Order is being Prepared ";
     } else if (val == "2") {
       return "Ready To Picked up by Delivery man";
-    }  else if (val == "3") {
+    } else if (val == "3") {
       return "On The Way";
     } else {
       return "Archive";
     }
   }
+
   getOrders() async {
     data.clear();
     statusRequest = StatusRequest.loading;
     update();
     var response = await ordersPendingData
-        .getData(myServices.sharedPreferences.getString("id")!);
-    print("=============================== Controller $response ");
+        .getData(myServices.sharedPreferences.getString("id")!.toString());
+    //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       // Start backend
@@ -71,7 +71,7 @@ class OrdersPendingController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await ordersPendingData.deleteData(orderid);
-    print("=============================== Controller $response ");
+    //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       // Start backend

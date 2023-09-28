@@ -6,7 +6,6 @@ import 'package:ecommerce_application/data/datasource/remote/cart_data.dart';
 import 'package:ecommerce_application/data/model/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../core/constant/approutes.dart';
 import '../data/model/coupon_model.dart';
 
@@ -28,8 +27,8 @@ class CartController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.addCart(
-        itemid, myServices.sharedPreferences.getInt("id")!);
-    //print("=============================== Controller $response ");
+        itemid, myServices.sharedPreferences.getString("id")!);
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -58,8 +57,8 @@ class CartController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.removeCart(
-        itemid, myServices.sharedPreferences.getInt("id")!);
-    //print("=============================== Controller $response ");
+        itemid, myServices.sharedPreferences.getString("id")!);
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -101,8 +100,8 @@ class CartController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response =
-        await cartData.viewCart(myServices.sharedPreferences.getInt("id")!);
-    //print("=============================== Controller $response ");
+        await cartData.viewCart(myServices.sharedPreferences.getString("id")!);
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -138,7 +137,7 @@ class CartController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await cartData.checkCoupon(couponController.text);
-    //print("=============================== Controller $response ");
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {

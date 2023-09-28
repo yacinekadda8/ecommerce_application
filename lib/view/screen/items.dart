@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/controller/favorite_controller.dart';
 import 'package:ecommerce_application/core/class/handlingdataview.dart';
@@ -24,72 +24,75 @@ class Items extends StatelessWidget {
     FavoriteController controllerFav = Get.put(FavoriteController());
 
     return GetBuilder<HomeControllerImp>(
-        builder: (homecontroller) =>
-     Scaffold(
-      backgroundColor: AppColor.backgroundcolor,
-      body: Container(
-          height: myHeight,
-          padding: const EdgeInsets.all(8),
-          child: ListView(children: [
-    
-            CustomAppBar(
-              isSearching: homecontroller.isSearch,
-                    textSearchController: homecontroller.textSearchController!,
-                    onChanged: (value) {
-                      //value = controller.textSearchController.text;
-                      homecontroller.checkSearch(value);
-                    },
-                    hintText: "search",
-                    icon: Icons.notifications_outlined,
-                    //onPressedNotifIcon: () {},
-                    onPressedFavoriteIcon: () {
-                      homecontroller.goToMyfavorites(
-                        ItemsModel(),
-                      );
-                    },
-                    onPressedSearch: () 
-                    =>  homecontroller.onSearchItems()
-                    ,
-                    onPressedX: () => homecontroller.clearSearch()
-                  ),
-                  HandlingDataView(
-                      statusRequest: homecontroller.statusRequest,
-                      widget: homecontroller.isSearch == false
-                          ?
-                  Column(
-                    children: [
+        builder: (homecontroller) => Scaffold(
+              backgroundColor: AppColor.backgroundcolor,
+              body: Container(
+                  height: myHeight,
+                  padding: const EdgeInsets.all(8),
+                  child: ListView(children: [
+                    CustomAppBar(
+                        isSearching: homecontroller.isSearch,
+                        textSearchController:
+                            homecontroller.textSearchController!,
+                        onChanged: (value) {
+                          //value = controller.textSearchController.text;
+                          homecontroller.checkSearch(value);
+                        },
+                        hintText: "search",
+                        icon: Icons.notifications_outlined,
+                        //onPressedNotifIcon: () {},
+                        onPressedFavoriteIcon: () {
+                          homecontroller.goToMyfavorites(
+                            ItemsModel(),
+                          );
+                        },
+                        onPressedSearch: () => homecontroller.onSearchItems(),
+                        onPressedX: () => homecontroller.clearSearch()),
+                    HandlingDataView(
+                        statusRequest: homecontroller.statusRequest,
+                        widget: homecontroller.isSearch == false
+                            ? Column(
+                                children: [
                                   const ListCategoriesItems(),
-            const SizedBox(height: 5),
-            GetBuilder<ItemsControllerImp>(
-                builder: (controller) => HandlingDataView(
-                    statusRequest: controller.statusRequest,
-                    widget: GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 4,
-                          mainAxisSpacing: 4,
-                          childAspectRatio: (Get.width) / (myHeight / 1.2),
-                        ),
-                        itemCount: controller.data.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          controllerFav.isFavorite[controller.data[index]
-                                  ['items_id']] =
-                              controller.data[index]['favorite'];
-                          return CustomListItem(
-                              //isFav: false,
-                              itemsModel:
-                                  ItemsModel.fromJson(controller.data[index]));
-                        })))
-                    ],
-                  ) : SearchList(
-                              listSearchDataModel:
-                                  homecontroller.listSearchDataModel,
-                              
-                            )
-     )])),
-    ));
+                                  const SizedBox(height: 5),
+                                  GetBuilder<ItemsControllerImp>(
+                                      builder: (controller) => HandlingDataView(
+                                          statusRequest:
+                                              controller.statusRequest,
+                                          widget: GridView.builder(
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const NeverScrollableScrollPhysics(),
+                                              gridDelegate:
+                                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                crossAxisSpacing: 4,
+                                                mainAxisSpacing: 4,
+                                                childAspectRatio: (Get.width) /
+                                                    (myHeight / 1.2),
+                                              ),
+                                              itemCount: controller.data.length,
+                                              scrollDirection: Axis.vertical,
+                                              itemBuilder: (context, index) {
+                                                controllerFav.isFavorite[
+                                                        controller.data[index]
+                                                            ['items_id']] =
+                                                    controller.data[index]
+                                                        ['favorite'];
+                                                return CustomListItem(
+                                                    //isFav: false,
+                                                    itemsModel:
+                                                        ItemsModel.fromJson(
+                                                            controller
+                                                                .data[index]));
+                                              })))
+                                ],
+                              )
+                            : SearchList(
+                                listSearchDataModel:
+                                    homecontroller.listSearchDataModel,
+                              ))
+                  ])),
+            ));
   }
 }

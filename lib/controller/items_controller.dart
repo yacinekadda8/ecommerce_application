@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/model/itemsmodel.dart';
@@ -51,8 +51,8 @@ class ItemsControllerImp extends ItemsController {
     data.clear();
     statusRequest = StatusRequest.loading;
     var response = await itemsData.getData(
-        categoryid, myServices.sharedPreferences.getInt("id")!);
-    print("=*=*=*= items: $response ");
+        categoryid, myServices.sharedPreferences.getString("id")!);
+    //print("=*=*=*= items: $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

@@ -1,10 +1,9 @@
-// ignore_for_file: avoid_print
-
 import 'package:ecommerce_application/core/class/statusrequest.dart';
 import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/home_data.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +21,7 @@ class HomeControllerImp extends SearchMixController {
   MyServices myServices = Get.find();
   //List<ItemsModel> listSearchDataModel = [];
   String? username;
-  int? id;
+  String? id;
   String? lang;
   //TextEditingController? textSearchController;
   //bool isSearch = false;
@@ -40,6 +39,10 @@ class HomeControllerImp extends SearchMixController {
 
   @override
   void onInit() {
+    // FirebaseMessaging.instance.getToken().then((value) {
+    //   String? token = value;
+    //   print("token: $token");
+    // });
     getData();
     initialdata();
     textSearchController = TextEditingController();
@@ -49,14 +52,14 @@ class HomeControllerImp extends SearchMixController {
 
   void initialdata() {
     username = myServices.sharedPreferences.getString("username");
-    id = myServices.sharedPreferences.getInt("id");
+    id = myServices.sharedPreferences.getString("id");
     lang = myServices.sharedPreferences.getString("lang");
   }
 
   getData() async {
     statusRequest = StatusRequest.loading;
     var response = await homeData.getData();
-    print("response:  $response ");
+    //print("response:  $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

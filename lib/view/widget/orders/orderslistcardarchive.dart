@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../controller/orders/archive_controller.dart';
@@ -24,9 +24,17 @@ class CardOrdersListArchive extends GetView<OrdersArchiveController> {
             children: [
               Row(
                 children: [
-                  Text("Order Number : #${listdata.ordersId}",
+                  Text("Order Number : ",
                       style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold)),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.white)),
+                  Text("#${listdata.ordersId}",
+                      style: const TextStyle(
+                          fontFamily: "arail",
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.silverGreen)),
                   const Spacer(),
                   // Text(listdata.ordersDatetime!)
                   Text(
@@ -39,29 +47,54 @@ class CardOrdersListArchive extends GetView<OrdersArchiveController> {
               ),
               const Divider(),
               Text(
-                  "Order Type : ${controller.printOrderType(listdata.ordersType!)}"),
+                  "Order Type : ${controller.printOrderType(listdata.ordersDeliverytype!.toString())}"),
               Text("Order Price : ${listdata.ordersPrice} \$"),
               Text("Delivery Price : ${listdata.ordersPricedelivery} \$ "),
               Text(
-                  "Payment Method : ${controller.printPaymentMethod(listdata.ordersPaymentmethod!)} "),
+                  "Payment Method : ${controller.printPaymentMethod(listdata.ordersPaymentmethod!.toString())} "),
               Text(
-                  "Order Status : ${controller.printOrderStatus(listdata.ordersStatus!)} "),
+                  "Order Status : ${controller.printOrderStatus(listdata.ordersStatus!.toString())} "),
               const Divider(),
-              Row(
+              Column(
                 children: [
-                  Text("Total Price : ${listdata.ordersId} \$ ",
-                      style: const TextStyle(
-                          color: AppColor.primaryblueColor,
-                          fontWeight: FontWeight.bold)),
-                  const Spacer(),
-                  MaterialButton(
-                    onPressed: () {
-                      Get.toNamed(AppRoute.ordersdetails,
-                          arguments: {"ordersmodel": listdata});
-                    },
-                    color: AppColor.red,
-                    textColor: AppColor.silverGreen,
-                    child: const Text("Details"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Total Price : ",
+                          style: const TextStyle(
+                              fontSize: 22,
+                              height: 1.6,
+                              color: AppColor.white,
+                              fontWeight: FontWeight.bold)),
+                      Text(
+                          NumberFormat.currency(
+                                  locale: 'ar_DZ', decimalDigits: 2)
+                              .format(listdata.ordersTotalPrice),
+                          style: const TextStyle(
+                              color: AppColor.silverGreen,
+                              fontFamily: "arial",
+                              fontSize: 22,
+                              // height: 1.9,
+                              fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  //const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      MaterialButton(
+                        onPressed: () {
+                          Get.toNamed(AppRoute.ordersdetails,
+                              arguments: {"ordersmodel": listdata});
+                        },
+                        color: AppColor.red,
+                        textColor: AppColor.black,
+                        child: const Text(
+                          "Details",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

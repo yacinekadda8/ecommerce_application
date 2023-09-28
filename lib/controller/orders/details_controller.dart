@@ -27,16 +27,16 @@ class OrdersDetailsController extends GetxController {
   CameraPosition? cameraPosition;
 
   intialData() {
-    if (ordersModel.ordersType == "0") {
+    if (ordersModel.ordersDeliverytype == 0) {
       cameraPosition = CameraPosition(
-        target: LatLng(double.parse(ordersModel.addressLat!),
-            double.parse(ordersModel.addressLong!)),
+        target: LatLng(double.parse(ordersModel.addressLat!.toString()),
+            double.parse(ordersModel.addressLong!.toString())),
         zoom: 12.4746,
       );
       markers.add(Marker(
-          markerId: MarkerId("1"),
-          position: LatLng(double.parse(ordersModel.addressLat!),
-              double.parse(ordersModel.addressLong!))));
+          markerId: const MarkerId("1"),
+          position: LatLng(double.parse(ordersModel.addressLat!.toString()),
+              double.parse(ordersModel.addressLong!.toString()))));
     }
   }
 
@@ -51,15 +51,16 @@ class OrdersDetailsController extends GetxController {
   getData() async {
     statusRequest = StatusRequest.loading;
 
-    var response = await ordersDetailsData.getData(ordersModel.ordersId!);
+    var response =
+        await ordersDetailsData.getData(ordersModel.ordersId!.toString());
 
-    print("=============================== Controller $response ");
+    //print("=============================== Controller $response ");
 
     statusRequest = handlingData(response);
 
     if (StatusRequest.success == statusRequest) {
       // Start backend
-      if (response['status'] == "success"){
+      if (response['status'] == "success") {
         List listdata = response['data'];
         data.addAll(listdata.map((e) => CartModel.fromJson(e)));
       } else {

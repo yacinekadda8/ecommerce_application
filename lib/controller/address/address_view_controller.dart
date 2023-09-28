@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/data/datasource/remote/address_data.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +21,9 @@ class AddressViewController extends GetxController {
     statusRequest = StatusRequest.loading;
 
     var response = await addressData
-        .getData(myServices.sharedPreferences.getInt('id')!.toString());
+        .getData(myServices.sharedPreferences.getString('id')!.toString());
 
-    print("=============================== Controller $response ");
+    //print("=============================== Controller $response ");
 
     statusRequest = handlingData(response);
 
@@ -53,8 +53,7 @@ class AddressViewController extends GetxController {
       textConfirm: "Yes",
       onConfirm: () {
         addressData.removeData(addressId.toString());
-        addressList.removeWhere(
-            (element) => element.addressId == addressId);
+        addressList.removeWhere((element) => element.addressId == addressId);
         update();
         Get.back();
       },

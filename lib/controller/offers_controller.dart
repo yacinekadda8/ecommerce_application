@@ -11,10 +11,9 @@ class OffersController extends SearchMixController {
 
   List<ItemsModel> data = [];
 
-
   //late StatusRequest statusRequest;
 
-    goToItemsDetailsScreen(itemsModel) {
+  goToItemsDetailsScreen(itemsModel) {
     Get.toNamed("itemdetails", arguments: {
       "itemsmodel": itemsModel,
     });
@@ -25,7 +24,7 @@ class OffersController extends SearchMixController {
 
     var response = await offersData.getData();
 
-    //print("=============================== Offers_Controller $response ");
+    ////print("=============================== Offers_Controller $response ");
     statusRequest = handlingData(response);
 
     if (StatusRequest.success == statusRequest) {

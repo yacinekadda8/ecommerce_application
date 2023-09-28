@@ -38,7 +38,7 @@ class OrdersArchiveController extends GetxController {
       return "The Order is being Prepared ";
     } else if (val == "2") {
       return "Ready To Picked up by Delivery man";
-    }  else if (val == "3") {
+    } else if (val == "3") {
       return "On The Way";
     } else {
       return "Archive";
@@ -50,8 +50,8 @@ class OrdersArchiveController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await ordersArchiveData
-        .getData(myServices.sharedPreferences.getString("id")!);
-    print("=============================== Controller $response ");
+        .getData(myServices.sharedPreferences.getString("id")!.toString());
+    //print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       // Start backend
@@ -65,8 +65,6 @@ class OrdersArchiveController extends GetxController {
     }
     update();
   }
-
- 
 
   refrehOrder() {
     getOrders();

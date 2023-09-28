@@ -23,6 +23,7 @@ import 'package:get/get.dart';
 
 import '../../view/screen/orders/archive.dart';
 import '../../view/screen/orders/details.dart';
+import '../../view/screen/orders/my_orders.dart';
 import '../../view/screen/orders/pending.dart';
 
 List<GetPage<dynamic>>? routes = [
@@ -65,6 +66,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.orderspending, page: () => const OrdersPending()),
   GetPage(name: AppRoute.ordersarchive, page: () => const OrdersArchiveView()),
   GetPage(name: AppRoute.ordersdetails, page: () => const OrdersDetails()),
+  GetPage(name: AppRoute.myorders, page: () => const MyOrders()),
   // GetPage(name: AppRoute.settings , page: () => const MySettings()),
   // GetPage(name: AppRoute.offers , page: () => const Offers()),
 ];

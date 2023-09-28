@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/core/services/services.dart';
@@ -32,8 +32,8 @@ class AddAddressDetailsController extends GetxController {
     lat = Get.arguments['lat'];
     long = Get.arguments['long'];
     if (kDebugMode) {
-      print('--- latitude: $lat');
-      print('--- longitude: $long');
+      //print('--- latitude: $lat');
+      //print('--- longitude: $long');
     }
   }
 
@@ -41,7 +41,7 @@ class AddAddressDetailsController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await adressData.addData(
-      myServices.sharedPreferences.getInt("id")!.toString(),
+      myServices.sharedPreferences.getString("id")!.toString(),
       name!.text,
       city!.text,
       street!.text,
@@ -49,7 +49,7 @@ class AddAddressDetailsController extends GetxController {
       long!,
       phone!.text,
     );
-    print("=============================== Controller $response ");
+    //print("=============================== Controller $response ");
 
     statusRequest = handlingData(response);
 

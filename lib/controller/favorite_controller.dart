@@ -27,8 +27,8 @@ class FavoriteController extends GetxController {
     data.clear();
     statusRequest = StatusRequest.loading;
     var response = await favoriteData.addFavotie(
-        itemid, myServices.sharedPreferences.getInt("id")!);
-    //print("=============================== Controller $response ");
+        itemid, myServices.sharedPreferences.getString("id")!);
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
@@ -57,8 +57,8 @@ class FavoriteController extends GetxController {
     data.clear();
     statusRequest = StatusRequest.loading;
     var response = await favoriteData.removeFavotie(
-        itemid, myServices.sharedPreferences.getInt("id")!);
-    //print("=============================== Controller $response ");
+        itemid, myServices.sharedPreferences.getString("id")!);
+    ////print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/core/class/statusrequest.dart';
 import 'package:ecommerce_application/core/constant/approutes.dart';
@@ -25,7 +25,7 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
       update();
 
       var response = await checkEmailData.postdata(email.text);
-      print("=============================== Controller $response ");
+      //print("=============================== Controller $response ");
       statusRequest = handlingData(response);
 
       if (StatusRequest.success == statusRequest) {
@@ -39,7 +39,7 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
       }
       update();
     } else {
-      print("Not Valid");
+      //print("Not Valid");
     }
   }
 

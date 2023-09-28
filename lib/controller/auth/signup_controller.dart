@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file:
 
 import 'package:ecommerce_application/core/class/statusrequest.dart';
 import 'package:ecommerce_application/core/constant/approutes.dart';
@@ -33,7 +33,7 @@ class SignUpControllerImp extends SignUpController {
       update();
       var response = await signupData.postdata(
           username.text, password.text, email.text, phone.text);
-      print("=============================== Controller $response ");
+      //print("=============================== Controller $response ");
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
