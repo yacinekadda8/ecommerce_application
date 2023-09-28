@@ -4,6 +4,8 @@ import 'package:ecommerce_application/view/screen/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../view/screen/notification.dart';
+
 abstract class HomeScreenController extends GetxController {
   changePage(int page);
 }
@@ -13,15 +15,7 @@ class HomeScreenControllerImp extends HomeScreenController {
   List<Widget> listPage = [
     const HomePage(),
     const Offers(),
-    const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Text('Notification'),
-        )
-      ],
-    ),
-
+    const MyNotification(),
     const MySettings(),
   ];
 
