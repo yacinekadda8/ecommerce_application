@@ -38,8 +38,33 @@ class ItemDetails extends StatelessWidget {
                         child:
                             const ItemImage() //FavorateIcon(onPressed: () {}),
                         ),
+                    controller.itemsModel.itemsDiscount != 0
+                        ? Positioned(
+                            top: Get.height / 3,
+                            left: 230,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 4),
+                              decoration: const BoxDecoration(
+                                  color: AppColor.red,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(50.0),
+                                      bottomRight: Radius.circular(50.0))),
+                              child: Text(
+                                  "%${controller.itemsModel.itemsDiscount}",
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      //backgroundColor: AppColor.primaryblueColor,
+                                      fontSize: 26,
+                                      height: 1.3,
+                                      color: AppColor.backgroundcolor,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "Serif")),
+                            ),
+                          )
+                        : const SizedBox(),
                     Positioned(
-                      //bottom: 150,
                       top: 10,
                       left: 10,
                       child: IconButton(
