@@ -3,7 +3,6 @@ import 'package:ecommerce_application/core/constant/approutes.dart';
 import 'package:ecommerce_application/core/functions/handingdatacontroller.dart';
 import 'package:ecommerce_application/core/services/services.dart';
 import 'package:ecommerce_application/data/datasource/remote/home_data.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
